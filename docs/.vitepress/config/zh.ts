@@ -67,6 +67,7 @@ function sidebarWeb(): DefaultTheme.SidebarItem[] {
                 { text: '了解 JSBridge', link: 'jsbridge' },
                 { text: '加载 SVG', link: 'load-svg' },
                 { text: '学习 SEO', link: 'seo' },
+                { text: '好文分享', link: 'share' },
             ],
         },
         {
