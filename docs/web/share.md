@@ -38,3 +38,15 @@
 ### **原文参考**
 
 [什么是 CSR、SSR、SSG、ISR - 渲染模式详解](https://zhuanlan.zhihu.com/p/640900230)
+
+## 为 Chrome 中记录的对象编写自定义格式化程序
+
+### 分享内容
+
+1. 最初的想法是美化 vue3 的`console.log`
+
+### **原文参考**
+
+[Writing custom formatters for logged objects in Chrome](https://www.mattzeunert.com/2016/02/19/custom-chrome-devtools-object-formatters.html)
+
+[Custom Object Formatters in Chrome DevTools](https://docs.google.com/document/d/1FTascZXT9cxfetuPRT2eXPQKXui4nWFivUnS_335T3U/preview?tab=t.0#heading=h.xuvxhsd2bp05)
