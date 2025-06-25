@@ -50,7 +50,7 @@ function nav(): DefaultTheme.NavItem[] {
             activeMatch: '/web/',
         },
         {
-            text: '示例',
+            text: '随笔',
             link: '/examples/scroll-snap',
             activeMatch: '/examples/',
         },
@@ -95,6 +95,13 @@ function sidebarExamples(): DefaultTheme.SidebarItem[] {
             text: '示例',
             collapsed: false,
             items: [{ text: 'css滚动吸附', link: 'scroll-snap' }],
+        },
+        {
+            text: '项目随笔',
+            collapsed: false,
+            items: [
+                { text: 'Wujie主应用调子应用弹窗', link: 'wujie-modal' }
+            ],
         },
     ]
 }

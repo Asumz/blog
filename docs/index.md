@@ -15,6 +15,6 @@ hero:
           text: Web 开发技术
           link: /web/http-cache
         - theme: alt
-          text: 示例
+          text: 随笔
           link: /examples/scroll-snap
 ---
