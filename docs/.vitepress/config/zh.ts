@@ -64,7 +64,7 @@ function sidebarWeb(): DefaultTheme.SidebarItem[] {
             collapsed: false,
             items: [
                 { text: 'HTTP 缓存', link: 'http-cache' },
-                { text: '了解 JSBridge', link: 'jsbridge' },
+                { text: '了解 JSBridge', link: 'js-bridge' },
                 { text: '加载 SVG', link: 'load-svg' },
                 { text: '学习 SEO', link: 'seo' },
                 { text: '好文分享', link: 'share' },
@@ -100,7 +100,7 @@ function sidebarExamples(): DefaultTheme.SidebarItem[] {
             text: '项目随笔',
             collapsed: false,
             items: [
-                { text: 'Wujie主应用调子应用弹窗', link: 'wujie-modal' }
+                { text: '无界主应用调子应用弹窗', link: 'wujie-modal' }
             ],
         },
     ]

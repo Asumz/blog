@@ -17,6 +17,12 @@ hero:
         - theme: alt
           text: e.g.
           link: /en/
+        - theme: alt
+          text: VitePress
+          link: https://vitepress.dev
+        - theme: alt
+          text: GitHub
+          link: https://github.com/Asumz
 
 features:
     - icon: 🤨

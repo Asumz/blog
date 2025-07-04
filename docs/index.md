@@ -17,4 +17,10 @@ hero:
         - theme: alt
           text: 随笔
           link: /examples/scroll-snap
+        - theme: alt
+          text: VitePress
+          link: https://vitepress.dev/zh/
+        - theme: alt
+          text: GitHub
+          link: https://github.com/Asumz
 ---

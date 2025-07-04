@@ -6,6 +6,7 @@ export const shared = defineConfig({
     cleanUrls: true,
     metaChunk: true,
 
+    // sitemap.xml
     // sitemap: {
     //     hostname: 'https://asumz.pages.dev',
     //     transformItems(items) {
@@ -30,12 +31,12 @@ export const shared = defineConfig({
         logo: { src: '/favicon.svg', width: 24, height: 24 },
         externalLinkIcon: true,
 
-        // socialLinks: [
-        //     { icon: 'github', link: 'https://github.com/Asumz' }
-        // ],
+        socialLinks: [
+            { icon: 'github', link: 'https://github.com/Asumz' }
+        ],
 
         footer: {
-            message: 'Powerd by VitePress'
+            message: 'Powered by VitePress'
         },
 
         search: {
