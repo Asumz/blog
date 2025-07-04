@@ -26,7 +26,7 @@ URL Scheme 是一种用于在移动应用程序之间进行通信和跳转的机
 
 URL Scheme 的格式通常是以应用程序的名字或标识作为前缀，例如跳转微信扫一扫
 
-```js
+```
 weixin://scanqrcode
 ```
 
