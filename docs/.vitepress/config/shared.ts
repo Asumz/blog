@@ -18,7 +18,6 @@ export const shared = defineConfig({
     head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
     ['link', { rel: 'apple-touch-icon', href: 'https://asumz.pages.dev/favicon.svg' }],
-    ['link', { rel: 'apple-touch-icon-precomposed', href: 'https://asumz.pages.dev/favicon.svg' }],
     ['meta', { name: 'theme-color', content: '#5f67ee' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:locale', content: 'zh' }],
