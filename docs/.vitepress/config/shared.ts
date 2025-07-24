@@ -8,7 +8,7 @@ export const shared = defineConfig({
 
     // sitemap.xml
     // sitemap: {
-    //     hostname: 'https://blog-2wh.pages.dev',
+    //     hostname: 'https://asumz.pages.dev',
     //     transformItems(items) {
     //         return items.filter(item => !item.url.includes('migration'))
     //     }
@@ -17,14 +17,16 @@ export const shared = defineConfig({
     /* prettier-ignore */
     head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+    ['link', { rel: 'apple-touch-icon', href: '/favicon.svg' }],
+    ['link', { rel: 'apple-touch-icon-precomposed', href: '/favicon.svg' }],
     ['meta', { name: 'theme-color', content: '#5f67ee' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:locale', content: 'zh' }],
     ['meta', { property: 'og:site_name', content: 'FX\'s Blog' }],
     ['meta', { property: 'og:title', content: 'FX\'s Blog - Personal Blog' }],
     ['meta', { property: 'og:description', content: 'Jot down the stuff worth sharing' }],
-    ['meta', { property: 'og:image', content: 'https://blog-2wh.pages.dev/fx-og.svg' }],
-    ['meta', { property: 'og:url', content: 'https://blog-2wh.pages.dev/' }],
+    ['meta', { property: 'og:image', content: 'https://asumz.pages.dev/fx-og.svg' }],
+    ['meta', { property: 'og:url', content: 'https://asumz.pages.dev/' }],
   ],
 
     themeConfig: {
