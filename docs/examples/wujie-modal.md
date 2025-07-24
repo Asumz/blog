@@ -46,8 +46,7 @@ import ReactDom from 'react-dom'
 
 const isLocal = window.location.origin.includes('localhost')
 const local = 'http://localhost:3001'
-const online =
-    process.env.MUJI_APP_F2ES_URL_NEW + '/projects/Mars_WEB/mars-web-finance'
+const online = process.env.subAppHost + '/projects/Mars_WEB/mars-web-finance'
 const origin = isLocal ? local : online
 
 const subAppName = 'finance-blank'
