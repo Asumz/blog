@@ -74,4 +74,4 @@ export default class MonthlyPass extends Component {
 
 ### 场景4：H5跳转小程序最佳实践
 
-内容已下架~
+[隐私访问](https://www.yuque.com/fangxiang-rrcse/whgivz/xg2kxqwq0zl9z3fg)
