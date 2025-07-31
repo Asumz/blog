@@ -103,6 +103,7 @@ function sidebarExamples(): DefaultTheme.SidebarItem[] {
                 { text: '大风车PC 无界弹窗', link: 'wujie-modal' },
                 { text: '大风车APP 灰度迁移', link: 'grey-projects' },
                 { text: '大风车跨端 月卡活动', link: 'monthly-pass' },
+                { text: '绘制动态海报', link: 'draw-poster' },
             ],
         },
     ]
