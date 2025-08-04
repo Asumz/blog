@@ -65,9 +65,61 @@ ctx.fillText('文本内容', Math.round(x), Math.round(y));
 
 对于移动端H5海报中使用的十几MB大图片，以下是几种有效的压缩方法和技巧：
 
-- 降低图片质量（逐步降低质量直到视觉可接受）
-- 考虑使用Web Worker避免主线程阻塞（考虑后台处理或者进度条展示）
-- 格式上可选择webp
+1. **降低图片质量（逐步降低质量直到视觉可接受）**
+
+2. **在 Web Worker 中处理复杂的图像绘制，避免主线程卡顿**
+
+:::details
+主线程
+
+```js
+const canvas = document.getElementById('myCanvas');
+const offscreen = canvas.transferControlToOffscreen(); // 转移控制权
+const worker = new Worker('worker.js');
+
+// 加载图片
+const img = new Image();
+img.crossOrigin = 'anonymous'; // 处理跨域图片（如果需要）
+img.src = 'image.png';
+
+img.onload = () => {
+    // 创建 ImageBitmap（更高效，适合 Worker 传输）
+    createImageBitmap(img).then(bitmap => {
+        // 将 OffscreenCanvas 和 ImageBitmap 发送给 Worker
+        worker.postMessage(
+            {canvas: offscreen, image: bitmap},
+            [offscreen, bitmap] // 转移所有权
+        );
+    });
+};
+```
+
+worker
+
+```js
+self.onmessage = async (e) => {
+    const {canvas, image} = e.data;
+    const ctx = canvas.getContext('2d'); // 获取 OffscreenCanvas 的 2D 上下文
+
+    // 绘制图片
+    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+    const blob = await canvas.convertToBlob({
+        type: 'image/png',
+        quality: 0.75,
+    });
+
+    self.postMessage({blob}, [ /** blob */]);
+    // 清理 ImageBitmap
+    image.close();
+};
+```
+
+:::
+
+3. **格式上可选择webp**
+
+:::details
 
 ```javascript
 // 前端检测浏览器是否支持WebP
@@ -78,3 +130,44 @@ function isWebPSupported() {
 }
 ```
 
+:::
+
+4. **压缩 Canvas 图像尺寸**
+
+:::details
+
+```javascript
+/**
+ * 压缩 Canvas 图像尺寸
+ * @param {HTMLCanvasElement} sourceCanvas - 原始Canvas元素
+ * @param {number} scaleFactor - 缩放比例 (0-1)
+ * @param {string} [imageType='image/jpeg'] - 输出图像类型
+ * @param {number} [quality=0.8] - 图像质量 (0-1)
+ * @returns {Promise<Blob>} 返回压缩后的Blob对象
+ */
+function compressCanvasSize(sourceCanvas, scaleFactor, imageType = 'image/jpeg', quality = 0.8) {
+    return new Promise((resolve, reject) => {
+        try {
+            // 创建缩小尺寸的Canvas
+            const smallCanvas = document.createElement('canvas');
+            smallCanvas.width = sourceCanvas.width * scaleFactor;
+            smallCanvas.height = sourceCanvas.height * scaleFactor;
+
+            // 绘制缩小版本
+            const ctx = smallCanvas.getContext('2d');
+            ctx.drawImage(sourceCanvas, 0, 0, smallCanvas.width, smallCanvas.height);
+
+            // 转换为Blob
+            smallCanvas.toBlob(
+                (blob) => blob ? resolve(blob) : reject(new Error('Canvas转Blob失败')),
+                imageType,
+                quality
+            );
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
+```
+
+:::
