@@ -61,3 +61,17 @@ document.getElementById('openAppBtn').addEventListener('click', () => {
 
 3. **其他浏览器**：
     - 实现效果因浏览器策略而异
+
+## 知乎的跳转实现方案
+
+知乎在移动端浏览器采用了直接通过`location.href`执行URL Scheme跳转的技术方案，这种实现方式无需用户主动点击即可触发应用跳转行为。
+
+### 跳转效果展示
+
+**应用未安装场景**
+![应用未安装状态下的跳转效果](https://img.souche.com/bolt/W1BgtuRgzRD1iyuVaAktY/3b1e0ac305f438f5e86d71e48070e123.jpg){width=300}
+
+**应用已安装场景**
+![应用已安装状态下的跳转效果](https://img.souche.com/bolt/QXuKAZYg-iPiG2MPN8lgz/d7290cac0acc2479f60789ef33c6d970.jpg){width=300}
+
+该方案通过JavaScript直接修改location.href属性触发跳转，相比用户主动点击的方式，能够提升应用调起率，但需要注意处理应用未安装时的降级逻辑。
