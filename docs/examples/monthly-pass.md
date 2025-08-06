@@ -25,10 +25,11 @@
 
 **技术实现**：
 
-1. **[下载页](https://xdfcxiazai.souche.com/)**
+1. [下载页](https://xdfcxiazai.souche.com/)
 
-2. **[about页](https://img.souche.com/bolt/9YyPYE8YlrHYTbKfvaKgC/bb86f4877dd95750fc050a9c2800533e.jpg
-   )**
+2. [about页](https://img.souche.com/bolt/9YyPYE8YlrHYTbKfvaKgC/bb86f4877dd95750fc050a9c2800533e.jpg
+   )
+3. [App 检测与跳转方案实现](app-download.md)
 
 ## 场景3：小程序WebView状态同步难题
 
