@@ -100,6 +100,7 @@ function sidebarExamples(): DefaultTheme.SidebarItem[] {
             text: '项目随笔',
             collapsed: false,
             items: [
+                { text: '项目构建优化', link: 'bundle-optimization' },
                 { text: 'app检测与跳转方案实现', link: 'app-download' },
                 { text: '绘制动态海报', link: 'draw-poster' },
                 { text: '大风车PC 无界弹窗', link: 'wujie-modal' },
