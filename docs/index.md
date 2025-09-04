@@ -12,15 +12,23 @@ hero:
         dark: /hero-dark.svg
     actions:
         - theme: brand
-          text: Web 开发技术
-          link: /web/http-cache
-        - theme: alt
           text: 随笔
-          link: /examples/scroll-snap
+          link: /examples/share
         - theme: alt
           text: VitePress
           link: https://vitepress.dev/zh/
         - theme: alt
           text: GitHub
           link: https://github.com/Asumz
+
+features:
+  - icon: 😎
+    title: Feature A
+    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - icon: 👈
+    title: Feature B
+    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - icon: 🐶
+    title: Feature C
+    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
