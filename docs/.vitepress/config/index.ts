@@ -14,7 +14,7 @@ export default defineConfig({
     /* prettier-ignore */
     head: [
         ['link', {rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg'}],
-        ['link', {rel: 'apple-touch-icon', href: '/favicon.svg'}],
+        ['link', {rel: 'apple-touch-icon', href: '/xbox.png'}],
         ['meta', {name: 'theme-color', content: '#5f67ee'}],
         ['meta', {property: 'og:type', content: 'website'}],
         ['meta', {property: 'og:locale', content: 'zh'}],

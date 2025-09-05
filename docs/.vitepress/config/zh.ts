@@ -19,6 +19,11 @@ export const zh = defineConfig({
             },
         },
 
+        editLink: {
+            pattern: 'https://github.com/Asumz/blog/edit/main/docs/:path',
+            text: '在 GitHub 上编辑此页面',
+        },
+
         langMenuLabel: '多语言',
         returnToTopLabel: '回到顶部',
         sidebarMenuLabel: '菜单',

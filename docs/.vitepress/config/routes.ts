@@ -37,7 +37,7 @@ function sidebarExamples(): DefaultTheme.SidebarItem[] {
             ],
         },
         {
-            text: '🟢 JavaScript',
+            text: '🟡 JavaScript',
             collapsed: false,
             base: '/examples/javascript/',
             items: [

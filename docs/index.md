@@ -23,12 +23,12 @@ hero:
 
 features:
   - icon: 😎
-    title: Feature A
+    title: U+1F60E
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
   - icon: 👈
-    title: Feature B
+    title: U+1F448
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
   - icon: 🐶
-    title: Feature C
+    title: U+1F436
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
