@@ -2,7 +2,7 @@
 
 ## 字体模糊问题
 
-在移动端H5中使用Canvas绘制海报时，确实可能会出现字体模糊的情况。以下是主要原因和解决方案：
+在移动端H5中使用Canvas绘制海报时，可能会出现字体模糊的情况。
 
 ### 主要原因
 
@@ -56,7 +56,7 @@ ctx.fillText('文本内容', Math.round(x), Math.round(y));
 
 ### 其他注意事项
 
-- 测试不同移动设备和浏览器，特别是iOS和Android的差异
+- 测试不同移动设备和浏览器，特别是IOS和Android的差异
 - 避免使用过小的字号(建议不小于12px)
 - 考虑使用web字体时预加载字体文件
 - 对于复杂海报，可以尝试使用html2canvas等库，但也要注意其模糊问题
@@ -69,10 +69,8 @@ ctx.fillText('文本内容', Math.round(x), Math.round(y));
 
 2. **在 Web Worker 中处理复杂的图像绘制，避免主线程卡顿**
 
-:::details
-主线程
-
 ```js
+// 主线程
 const canvas = document.getElementById('myCanvas');
 const offscreen = canvas.transferControlToOffscreen(); // 转移控制权
 const worker = new Worker('worker.js');
@@ -94,9 +92,8 @@ img.onload = () => {
 };
 ```
 
-worker
-
 ```js
+// workder.js
 self.onmessage = async (e) => {
     const {canvas, image} = e.data;
     const ctx = canvas.getContext('2d'); // 获取 OffscreenCanvas 的 2D 上下文
@@ -115,11 +112,7 @@ self.onmessage = async (e) => {
 };
 ```
 
-:::
-
 3. **格式上可选择webp**
-
-:::details
 
 ```javascript
 // 前端检测浏览器是否支持WebP
@@ -130,11 +123,7 @@ function isWebPSupported() {
 }
 ```
 
-:::
-
 4. **压缩 Canvas 图像尺寸**
-
-:::details
 
 ```javascript
 /**
@@ -169,5 +158,3 @@ function compressCanvasSize(sourceCanvas, scaleFactor, imageType = 'image/jpeg',
     });
 }
 ```
-
-:::

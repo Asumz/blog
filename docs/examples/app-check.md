@@ -73,5 +73,3 @@ document.getElementById('openAppBtn').addEventListener('click', () => {
 
 **应用已安装场景**
 ![应用已安装状态下的跳转效果](https://img.souche.com/bolt/QXuKAZYg-iPiG2MPN8lgz/d7290cac0acc2479f60789ef33c6d970.jpg){width=300}
-
-该方案通过JavaScript直接修改location.href属性触发跳转，相比用户主动点击的方式，能够提升应用调起率，但需要注意处理应用未安装时的降级逻辑。
