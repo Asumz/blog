@@ -77,7 +77,7 @@ export default class MonthlyPass extends Component {
 
 [隐私访问](https://www.yuque.com/fangxiang-rrcse/whgivz/xg2kxqwq0zl9z3fg)
 
-## 场景5：APP端绘制动态海报
+## 场景5：APP端绘制海报
 
 [绘制海报](draw-poster.md)
 
