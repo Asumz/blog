@@ -53,7 +53,7 @@ document.getElementById('openAppBtn').addEventListener('click', () => {
 
 1. **微信浏览器**：
     - 会拦截 URL Scheme 跳转
-    - 但允许跳转到应用商店 `itms-appss://`
+    - 但允许跳转到应用商店 `itms-apps://`
 
 2. **iOS Safari (17+，可能更早)**：
     - 会拦截 iframe 跳转方式
