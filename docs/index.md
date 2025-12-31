@@ -5,7 +5,7 @@ layout: home
 hero:
     name: FX's Blog
     text: 个人博客
-    tagline: 记录值得分享的内容
+    tagline: 好记性不如烂笔头
     image:
         alt: oops
         light: /hero-light.svg
