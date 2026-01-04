@@ -19,7 +19,7 @@ RN 开发效率低于 Web，在技术栈迁移过程中兼容老业务并做 UI 
 
 3. **环境标识**
 
-    - 通过引入灰度[标识插件脚本](https://img.souche.com/meta/gray/index.js)（在 index.html 中加载）
+    - 通过引入灰度标识插件脚本（在 index.html 中加载）
     - 脚本功能：
         - 检测 location.pathname 是否匹配灰度项目路径
         - 校验当前用户是否在白名单内
