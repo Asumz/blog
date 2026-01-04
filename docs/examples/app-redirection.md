@@ -2,9 +2,9 @@
 
 ## 功能概述
 
-实现一个纯web的智能跳转功能：当目标 App 已安装时直接打开，未安装则跳转到应用商店下载页面。
+当目标 App 已安装时直接打开，未安装则跳转到应用商店下载页面。
 
-## 技术实现方案
+## 具体实现
 
 ```javascript
 /**
@@ -51,25 +51,24 @@ document.getElementById('openAppBtn').addEventListener('click', () => {
 
 ## 浏览器兼容性说明
 
-1. **微信浏览器**：
-    - 会拦截 URL Scheme 跳转
-    - 但允许跳转到应用商店 `itms-apps://`
-
-2. **iOS Safari (17+，可能更早)**：
+1. **iOS Safari (17+，可能更早)**：
+    - 允许 URL Scheme 跳转
     - 会拦截 iframe 跳转方式
-    - 但允许直接通过 URL Scheme 跳转
+
+2. **微信浏览器（严格）**：
+    - 会拦截 URL Scheme 跳转（但允许跳转到应用商店，如 `itms-apps://`）
 
 3. **其他浏览器**：
-    - 实现效果因浏览器策略而异
+    - 实现效果因浏览器策略而异。比如自己的 app 内部浏览器可以允许 iframe 跳转
 
 ## 知乎的跳转实现方案
 
-知乎在移动端浏览器采用了直接通过`location.href`执行URL Scheme跳转的技术方案，这种实现方式无需用户主动点击即可触发应用跳转行为。
+知乎在移动端浏览器采用了直接通过 `location.href` 执行URL Scheme跳转的技术方案，这种实现方式无需用户主动点击即可触发应用跳转行为。
 
 ### 跳转效果展示
 
 **应用未安装场景**
-![应用未安装状态下的跳转效果](https://img.souche.com/bolt/W1BgtuRgzRD1iyuVaAktY/3b1e0ac305f438f5e86d71e48070e123.jpg){width=300}
+![应用未安装状态下的跳转效果](../public/img/zhihu-uninstalled.jpg){width=300}
 
 **应用已安装场景**
-![应用已安装状态下的跳转效果](https://img.souche.com/bolt/QXuKAZYg-iPiG2MPN8lgz/d7290cac0acc2479f60789ef33c6d970.jpg){width=300}
+![应用已安装状态下的跳转效果](../public/img/zhihu-installed.jpg){width=300}

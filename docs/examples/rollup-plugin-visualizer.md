@@ -61,10 +61,10 @@ export default defineConfig({
 
 ## 优化实践案例
 
-### 初始状态分析 ROOT 1.82MB
-![初始打包分析](https://img.souche.com/bolt/lXkqsEEcg3kvO6odjlhkN/a6f3127413abb04f78d05b8651c94034.jpg)
+### 初始状态分析 ROOT _1.82MB_
+![初始打包分析](../public/img/rollup-plugin-visualizer-1.jpg)
 
-### 优化步骤1：Tree Shaking
+### 优化步骤1：按需引入 _1.29MB_
 
 **问题发现**：lodash全量打包
 
@@ -73,9 +73,9 @@ export default defineConfig({
 2. 直接引用子路径（如`lodash/debounce`）
 3. 使用babel插件转换按需引入
 
-![Tree Shaking效果](https://img.souche.com/bolt/nXVsa74IbOQzna5yA2cxY/f8ee7a0e9d27a1f9b680b8fc88d12f7f.png)
+![按需引入](../public/img/rollup-plugin-visualizer-2.jpg)
 
-### 优化步骤2：代码分割
+### 优化步骤2：代码分割 _588KB_
 
 **改进措施**：
 - 为路由chunk添加语义化命名（如`[name]-[hash].js`）
@@ -83,11 +83,11 @@ export default defineConfig({
 - 按依赖顺序提取公共模块
 - 实现路由级代码分割
 
-![代码分割效果](https://img.souche.com/bolt/7qYpiCxqNTiYWQ50uLuKy/edf0a7a49b07ef0e865d7aa7aed73d4a.png)
+![代码分割](../public/img/rollup-plugin-visualizer-3.jpg)
 
-### 优化步骤3：CDN引入
+### 优化步骤3：CDN引入 _368KB_
 
-**问题处理**：vant组件库全量引入
+**问题发现**：vant组件引用数量不多，组件库被全量引入
 
 **解决方案**：
 - 使用CDN外部化引入
@@ -107,14 +107,7 @@ const Vue = window.Vue; // 直接使用全局变量
 ```
 :::
 
-![CDN优化效果](https://img.souche.com/bolt/REHXJzWmFEJWsEo5XPjOi/358838798fdf1a3ba0fa899f499f35af.png)
-
-### 优化步骤4：网络分析
-
-结合浏览器Network面板：
-- 检查可视化工具未统计的资源
-- 分析细碎模块的加载情况
-- 优化静态资源加载策略
+![CDN优化效果](../public/img/rollup-plugin-visualizer-4.jpg)
 
 ### 最终结果 ROOT 368.66KB
 
