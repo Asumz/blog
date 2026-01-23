@@ -1,16 +1,16 @@
 <script setup>
-import { ref } from 'vue'
+import {ref} from 'vue'
 
 const count = ref(0)
 </script>
 
 <template>
-    <button @click="count++">You clicked me {{ count }} times.</button>
+  <button @click="count++">You clicked me {{ count }} times.</button>
 </template>
 
 <style module>
 button {
-    color: #42b883;
-    font-weight: bold;
+  color: #42b883;
+  font-weight: bold;
 }
 </style>

@@ -18,7 +18,7 @@ function sidebarExamples(): DefaultTheme.SidebarItem[] {
             collapsed: false,
             items: [
                 {text: 'rollup-plugin-visualizer', link: 'rollup-plugin-visualizer'},
-                {text: 'App 跳转方案', link: 'app-redirection'},
+                {text: 'App 安装检测与跳转', link: 'app-redirection'},
                 {text: 'Canvas 绘制海报', link: 'draw-poster'},
                 {text: '大风车PC 无界弹窗', link: 'wujie-modal'},
                 {text: '大风车App 灰度迁移', link: 'grey-projects'},

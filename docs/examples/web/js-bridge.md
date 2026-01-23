@@ -2,7 +2,8 @@
 
 ## 什么是 JSBridge？
 
-JSBridge 是一种 JS 实现的 Bridge，连接着桥两端的 Native 和 H5。它在 APP 内方便地让 Native 调用 JS，JS 调用 Native ，是**双向通信的通道**。JSBridge 主要提供了 JS 调用 Native 代码的能力，实现原生功能如查看本地相册、打开摄像头、指纹支付等。
+JSBridge 是一种 JS 实现的 Bridge，连接着桥两端的 Native 和 H5。它在 APP 内方便地让 Native 调用 JS，JS 调用 Native ，是*
+*双向通信的通道**。JSBridge 主要提供了 JS 调用 Native 代码的能力，实现原生功能如查看本地相册、打开摄像头、指纹支付等。
 
 ## JSBridge 的用途
 
@@ -18,7 +19,8 @@ Native 向 JS 发送消息: 回溯调用结果、消息推送、通知 JS 当前
 
 #### 1. 注入 API
 
-注入 API 方式的主要原理是，通过 WebView 提供的接口，向 JavaScript 的 Context（window）中注入对象或者方法，让 JavaScript 调用时，直接执行相应的 Native 代码逻辑，达到 JavaScript 调用 Native 的目的。
+注入 API 方式的主要原理是，通过 WebView 提供的接口，向 JavaScript 的 Context（window）中注入对象或者方法，让 JavaScript
+调用时，直接执行相应的 Native 代码逻辑，达到 JavaScript 调用 Native 的目的。
 
 #### 2. 拦截 URL SCHEME
 
@@ -30,7 +32,8 @@ URL Scheme 的格式通常是以应用程序的名字或标识作为前缀，例
 weixin://scanqrcode
 ```
 
-拦截 URL SCHEME 的主要流程是：Web 端通过某种方式（例如 iframe.src）发送 URL Scheme 请求，之后 Native 拦截到请求并根据 URL SCHEME（包括所带的参数）进行相关操作。
+拦截 URL SCHEME 的主要流程是：Web 端通过某种方式（例如 iframe.src）发送 URL Scheme 请求，之后 Native 拦截到请求并根据 URL
+SCHEME（包括所带的参数）进行相关操作。
 
 在时间过程中，这种方式有一定的缺陷：
 
