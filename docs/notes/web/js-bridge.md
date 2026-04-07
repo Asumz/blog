@@ -2,8 +2,7 @@
 
 ## 什么是 JSBridge？
 
-JSBridge 是一种 JS 实现的 Bridge，连接着桥两端的 Native 和 H5。它在 APP 内方便地让 Native 调用 JS，JS 调用 Native ，是*
-*双向通信的通道**。JSBridge 主要提供了 JS 调用 Native 代码的能力，实现原生功能如查看本地相册、打开摄像头、指纹支付等。
+JSBridge 是一种 JS 实现的 Bridge，连接着桥两端的 Native 和 H5。它在 APP 内方便地让 Native 调用 JS，JS 调用 Native ，是\* \*双向通信的通道\*\*。JSBridge 主要提供了 JS 调用 Native 代码的能力，实现原生功能如查看本地相册、打开摄像头、指纹支付等。
 
 ## JSBridge 的用途
 
@@ -53,38 +52,38 @@ JSBridge 的接口主要功能有两个：调用 Native（给 Native 发消息�
 
 ```javascript
 ;(function () {
-    // 唯一标识符
-    var id = 0
-    // 回调函数仓库
-    var callbacks = {}
-    window.JSBridge = {
-        // 给 Native 发消息
-        postMessage: function (bridgeName, callback, data) {
-            var thisId = id++
-            callbacks[thisId] = callback
-            // 构建一个包含消息和唯一标识符的对象
-            const request = {
-                bridgeName: bridgeName,
-                data: data || {},
-                callbackId: thisId
-            }
-            // 判断环境，使用 Native 端提供的方法发送消息
-            nativeBridge.postMessage(request)
-        },
-        // 接收 Native 消息
-        receiveMessage: function (msg) {
-            // 接收数据
-            var { bridgeName, data = {}, callbackId } = msg
+  // 唯一标识符
+  var id = 0
+  // 回调函数仓库
+  var callbacks = {}
+  window.JSBridge = {
+    // 给 Native 发消息
+    postMessage: function (bridgeName, callback, data) {
+      var thisId = id++
+      callbacks[thisId] = callback
+      // 构建一个包含消息和唯一标识符的对象
+      const request = {
+        bridgeName: bridgeName,
+        data: data || {},
+        callbackId: thisId,
+      }
+      // 判断环境，使用 Native 端提供的方法发送消息
+      nativeBridge.postMessage(request)
+    },
+    // 接收 Native 消息
+    receiveMessage: function (msg) {
+      // 接收数据
+      var { bridgeName, data = {}, callbackId } = msg
 
-            if (callbackId !== undefined) {
-                if (callbacks[callbackId]) {
-                    callbacks[callbackId](data)
-                }
-            } else {
-                // 异常处理
-            }
+      if (callbackId !== undefined) {
+        if (callbacks[callbackId]) {
+          callbacks[callbackId](data)
         }
-    }
+      } else {
+        // 异常处理
+      }
+    },
+  }
 })()
 ```
 
@@ -92,22 +91,22 @@ JSBridge 的接口主要功能有两个：调用 Native（给 Native 发消息�
 
 ```javascript
 function getAuth() {
-    return new Promise((resolve, reject) => {
-        window.JSBridge.postMessage('getAuth', data => {
-            if (data.err_code !== 0) {
-                resolve(data.data)
-            } else {
-                reject(data.msg)
-            }
-        })
+  return new Promise((resolve, reject) => {
+    window.JSBridge.postMessage('getAuth', data => {
+      if (data.err_code !== 0) {
+        resolve(data.data)
+      } else {
+        reject(data.msg)
+      }
     })
+  })
 }
 // usage
 getAuth()
-    .then(data => {
-        // doSomething
-    })
-    .catch(err => {
-        // 异常处理
-    })
+  .then(data => {
+    // doSomething
+  })
+  .catch(err => {
+    // 异常处理
+  })
 ```

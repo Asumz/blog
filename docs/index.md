@@ -3,23 +3,23 @@
 layout: home
 
 hero:
-    name: FX's Blog
-    text: 个人博客
-    tagline: 好记性不如烂笔头
-    image:
-        alt: oops
-        light: /hero-light.svg
-        dark: /hero-dark.svg
-    actions:
-        - theme: brand
-          text: 随笔
-          link: /examples/share
-        - theme: alt
-          text: VitePress
-          link: https://vitepress.dev/zh/
-        - theme: alt
-          text: GitHub
-          link: https://github.com/Asumz
+  name: FX's Blog
+  text: 个人博客
+  tagline: 好记性不如烂笔头
+  image:
+    alt: oops
+    light: /hero-light.svg
+    dark: /hero-dark.svg
+  actions:
+    - theme: brand
+      text: 随笔
+      link: /notes/dev-snacks
+    - theme: alt
+      text: VitePress
+      link: https://vitepress.dev/zh/
+    - theme: alt
+      text: GitHub
+      link: https://github.com/Asumz
 
 features:
   - icon: 😎

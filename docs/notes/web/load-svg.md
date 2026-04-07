@@ -18,7 +18,7 @@ SVG 作为矢量图的一种标准格式，已经得到了各大浏览器的支�
 
 ```html
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-    <text y=".9em" font-size="80">🚀</text>
+  <text y=".9em" font-size="80">🚀</text>
 </svg>
 ```
 
@@ -26,7 +26,7 @@ SVG 作为矢量图的一种标准格式，已经得到了各大浏览器的支�
 
 ```css
 body {
-    background-image: url(/favicon.svg);
+  background-image: url(/favicon.svg);
 }
 ```
 
@@ -53,7 +53,7 @@ JavaScript、CSS 文件过大而带来的网页加载缓慢问题。
 
 ```css
 body {
-    background-image: url(/favicon.svg);
+  background-image: url(/favicon.svg);
 }
 ```
 
@@ -61,7 +61,7 @@ body {
 
 ```css
 body {
-    background-image: url(data:image/svg;base64,iVBORw01afer...);
+  background-image: url(data:image/svg;base64,iVBORw01afer...);
 }
 ```
 
@@ -69,24 +69,24 @@ body {
 
 ```js
 module.exports = {
-    module: {
-        rules: [
-            {
-                test: /\.svg$/,
-                use: [
-                    {
-                        loader: 'url-loader',
-                        options: {
-                            // 10KB 以下的文件采用 url-loader
-                            limit: 1024 * 10,
-                            // 否则采用 file-loader，默认值就是 file-loader
-                            fallback: 'file-loader',
-                        },
-                    },
-                ],
+  module: {
+    rules: [
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              // 10KB 以下的文件采用 url-loader
+              limit: 1024 * 10,
+              // 否则采用 file-loader，默认值就是 file-loader
+              fallback: 'file-loader',
             },
+          },
         ],
-    },
+      },
+    ],
+  },
 }
 ```
 

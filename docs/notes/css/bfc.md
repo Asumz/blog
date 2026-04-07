@@ -56,22 +56,22 @@ BFC 使得让浮动内容和周围的内容等高。
 
 ```html
 <section>
-    <div class="box">
-        <div class="float">我是浮动的盒子！</div>
-        <p>我是容器内的内容。</p>
-    </div>
+  <div class="box">
+    <div class="float">我是浮动的盒子！</div>
+    <p>我是容器内的内容。</p>
+  </div>
 </section>
 <section>
-    <div class="box" style="overflow:auto">
-        <div class="float">我是浮动的盒子！</div>
-        <p>我是 <code>overflow:auto</code> 容器内部的内容。</p>
-    </div>
+  <div class="box" style="overflow:auto">
+    <div class="float">我是浮动的盒子！</div>
+    <p>我是 <code>overflow:auto</code> 容器内部的内容。</p>
+  </div>
 </section>
 <section>
-    <div class="box" style="display:flow-root">
-        <div class="float">我是浮动的盒子！</div>
-        <p>我是 <code>display:flow-root</code> 容器内部的内容。</p>
-    </div>
+  <div class="box" style="display:flow-root">
+    <div class="float">我是浮动的盒子！</div>
+    <p>我是 <code>display:flow-root</code> 容器内部的内容。</p>
+  </div>
 </section>
 ```
 
@@ -81,23 +81,23 @@ BFC 使得让浮动内容和周围的内容等高。
 
 ```css
 section {
-    height: 150px;
+  height: 150px;
 }
 .box {
-    background-color: rgb(224, 206, 247);
-    border: 5px solid rebeccapurple;
+  background-color: rgb(224, 206, 247);
+  border: 5px solid rebeccapurple;
 }
 .box[style] {
-    background-color: aliceblue;
-    border: 5px solid steelblue;
+  background-color: aliceblue;
+  border: 5px solid steelblue;
 }
 .float {
-    float: left;
-    width: 200px;
-    height: 100px;
-    background-color: rgba(255, 255, 255, 0.5);
-    border: 1px solid black;
-    padding: 10px;
+  float: left;
+  width: 200px;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid black;
+  padding: 10px;
 }
 ```
 
@@ -154,15 +154,15 @@ section {
 
 ```html
 <section>
-    <div class="float">试试重新调整这个外部浮动元素的大小</div>
-    <div class="box"><p>普通</p></div>
+  <div class="float">试试重新调整这个外部浮动元素的大小</div>
+  <div class="box"><p>普通</p></div>
 </section>
 <section>
-    <div class="float">试试重新调整这个外部浮动元素的大小</div>
-    <div class="box" style="display:flow-root">
-        <p><code>display:flow-root</code></p>
-        <p></p>
-    </div>
+  <div class="float">试试重新调整这个外部浮动元素的大小</div>
+  <div class="box" style="display:flow-root">
+    <p><code>display:flow-root</code></p>
+    <p></p>
+  </div>
 </section>
 ```
 
@@ -172,26 +172,26 @@ section {
 
 ```css
 section {
-    height: 150px;
+  height: 150px;
 }
 .box {
-    background-color: rgb(224, 206, 247);
-    border: 5px solid rebeccapurple;
+  background-color: rgb(224, 206, 247);
+  border: 5px solid rebeccapurple;
 }
 .box[style] {
-    background-color: aliceblue;
-    border: 5px solid steelblue;
+  background-color: aliceblue;
+  border: 5px solid steelblue;
 }
 .float {
-    float: left;
-    overflow: hidden; /* resize:both 所必需的样式 */
-    resize: both;
-    margin-right: 25px;
-    width: 200px;
-    height: 100px;
-    background-color: rgba(255, 255, 255, 0.75);
-    border: 1px solid black;
-    padding: 10px;
+  float: left;
+  overflow: hidden; /* resize:both 所必需的样式 */
+  resize: both;
+  margin-right: 25px;
+  width: 200px;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0.75);
+  border: 1px solid black;
+  padding: 10px;
 }
 ```
 
@@ -254,7 +254,7 @@ HTML
 <div class="blue"></div>
 <div class="red"></div>
 <div class="outer">
-    <div class="blue"></div>
+  <div class="blue"></div>
 </div>
 ```
 
@@ -263,20 +263,20 @@ CSS
 ```css
 .blue,
 .red {
-    height: 50px;
-    margin: 10px 0;
+  height: 50px;
+  margin: 10px 0;
 }
 
 .blue {
-    background: blue;
+  background: blue;
 }
 
 .red {
-    background: red;
+  background: red;
 }
 .outer {
-    overflow: hidden;
-    background: transparent;
+  overflow: hidden;
+  background: transparent;
 }
 ```
 

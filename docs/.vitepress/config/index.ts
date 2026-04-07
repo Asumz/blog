@@ -1,18 +1,18 @@
-import {defineConfig} from 'vitepress'
-import {search as zhSearch, zh} from './zh'
-import {routes} from './routes'
+import { defineConfig } from 'vitepress'
+import { search as zhSearch, zh } from './zh'
+import { routes } from './routes'
 
 export default defineConfig({
-    lang: 'zh-Hans',
-    title: 'FX\'s Blog',
-    description: 'Jot down the stuff worth sharing',
+  lang: 'zh-CN',
+  title: "FX's Blog",
+  description: 'Jot down the stuff worth sharing',
 
-    lastUpdated: true,
-    cleanUrls: true,
-    metaChunk: true,
+  lastUpdated: true,
+  cleanUrls: true,
+  metaChunk: true,
 
-    /* prettier-ignore */
-    head: [
+  /* prettier-ignore */
+  head: [
         ['link', {rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg'}],
         ['link', {rel: 'apple-touch-icon', href: '/xbox.png'}],
         ['meta', {name: 'theme-color', content: '#5f67ee'}],
@@ -25,30 +25,28 @@ export default defineConfig({
         ['meta', {property: 'og:url', content: 'https://asumz.pages.dev/'}],
     ],
 
-    themeConfig: {
-        logo: {src: '/favicon.svg', width: 24, height: 24},
-        externalLinkIcon: true,
+  themeConfig: {
+    logo: { src: '/favicon.svg', width: 24, height: 24 },
+    externalLinkIcon: true,
 
-        socialLinks: [
-            {icon: 'github', link: 'https://github.com/Asumz'}
-        ],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/Asumz' }],
 
-        footer: {
-            message: 'Powered by VitePress'
-        },
-
-        search: {
-            provider: 'local',
-            options: {
-                locales: {...zhSearch}
-            }
-        },
-
-        nav: routes.nav,
-        sidebar: routes.sidebar,
+    footer: {
+      message: 'Powered by VitePress',
     },
 
-    locales: {
-        root: {label: '简体中文', ...zh},
-    }
+    search: {
+      provider: 'local',
+      options: {
+        locales: { ...zhSearch },
+      },
+    },
+
+    nav: routes.nav,
+    sidebar: routes.sidebar,
+  },
+
+  locales: {
+    root: { label: '简体中文', ...zh },
+  },
 })

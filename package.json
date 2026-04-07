@@ -3,9 +3,12 @@
   "scripts": {
     "docs:dev": "rimraf docs/.vitepress/dist && vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "devDependencies": {
+    "prettier": "^3.8.1",
     "rimraf": "^5.0.7",
     "vitepress": "^1.1.4"
   }

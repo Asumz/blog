@@ -1,4 +1,4 @@
-# 好文分享
+# 开发零食铺
 
 ## 深入理解 package.json 中的 peerDependencies
 
