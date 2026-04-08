@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: FX's Blog
-  text: 个人博客
+  name: 摸鱼指南
+  # text: 个人博客
   tagline: 好记性不如烂笔头
   image:
     alt: oops

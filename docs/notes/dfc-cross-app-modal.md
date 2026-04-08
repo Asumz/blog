@@ -4,7 +4,7 @@
 
 构建一个能够跨应用被唤起的弹窗
 
-项目是由[无界](https://wujie-micro.github.io/doc/guide/start.html)微前端搭建，主应用和子应用均采用React + Antd技术栈。
+项目是由 [无界](https://wujie-micro.github.io/doc/guide/start.html) 微前端搭建，主应用和子应用均采用 react + antd 技术栈。
 
 ## 技术方案对比
 
@@ -18,12 +18,12 @@
 
 ### 1. 弹窗怎么穿透窗口？
 
-无界采用 `Web Components` 渲染应用，没有 `iframe`
+无界采用 `webComponents` 渲染应用，没有 `iframe`
 窗口限制。[无界原理](https://wujie-micro.github.io/doc/guide/#iframe-%E8%BF%9E%E6%8E%A5%E6%9C%BA%E5%88%B6%E5%92%8C-css-%E6%B2%99%E7%AE%B1%E6%9C%BA%E5%88%B6)
 
 ### 2. 多弹窗层级怎么控制？
 
-首先，由于无界的渲染方案，父子应用在同一项目中，弹窗层级会遵循整个渲染页面中**一致的z-index规则！**。
+首先，由于无界的渲染方案，父子应用在同一项目中，弹窗层级会遵循整个渲染页面中**一致的 zIndex 规则！**。
 
 1. 父子应用都弹窗，父应用的弹窗元素会在body中更靠后，会产生如果父子弹窗z-index都为1000，子应用弹窗始终会被遮蔽的效果。因此子应用弹窗需要设置更高的层级
 2. 同一应用中的多弹窗依赖 antd 本身的弹窗调度
@@ -127,7 +127,7 @@ export const useReceiptsDrawer = () => {
 
 :::
 
-项目混用了 class 和 function 组件，class 无法直接调用 hooks，构造一个 HOC
+项目混用了 class 和 function 组件，class 无法直接调用 hooks，构造一个 hoc
 
 :::details HOC 实现
 
@@ -136,7 +136,7 @@ import React from 'react'
 import { useReceiptsDrawer } from '@/components/hooks/useSubApp'
 
 export const withReceiptsDrawer = Component => {
-  return (props) => {
+  return props => {
     const receiptsHandler = useReceiptsDrawer()
     return <Component receiptsHandler={receiptsHandler} {...props} />
   }
@@ -173,7 +173,7 @@ export const ReceiptsDrawer = () => {
     setVisible(false)
   }
 
-  const afterConfirm = (cb) => {
+  const afterConfirm = cb => {
     eventBus.off(eventBusCode.afterReceiptsDrawerConfirm)
     eventBus.on(eventBusCode.afterReceiptsDrawerConfirm, cb)
   }
@@ -200,10 +200,10 @@ export const ReceiptsDrawer = () => {
   )
 }
 
-ReceiptsDrawer.show = (receiptsProps) => {}
+ReceiptsDrawer.show = receiptsProps => {}
 ReceiptsDrawer.hide = () => {}
-ReceiptsDrawer.setConfig = (config) => {}
-ReceiptsDrawer.afterConfirm = (cb) => {}
+ReceiptsDrawer.setConfig = config => {}
+ReceiptsDrawer.afterConfirm = cb => {}
 
 // alias
 export const receiptsDrawerHandler = ReceiptsDrawer
@@ -229,7 +229,7 @@ receiptsDrawerHandler.show({
 
 receiptsDrawerHandler.hide()
 
-receiptsDrawerHandler.afterConfirm((data) => {})
+receiptsDrawerHandler.afterConfirm(data => {})
 
 receiptsDrawerHandler.setConfig({
   /** Drawer属性 */

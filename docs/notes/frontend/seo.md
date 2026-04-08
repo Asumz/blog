@@ -5,28 +5,28 @@ head:
       content: hello
   - - meta
     - name: keywords
-      content: super duper SEO
+      content: super duper seo
 ---
 
-# SEO
+# seo
 
-SEO（搜索引擎优化）是一种用于提升网页在搜索引擎中的收录数量以及排序位置而做的优化行为。
+seo（搜索引擎优化）是一种用于提升网页在搜索引擎中的收录数量以及排序位置而做的优化行为。
 
 所需的一切， 排名更高 ⭐ 并获得更多流量 ⛰️
 
-## SEO 怎么做
+## seo 怎么做
 
-SEO 是一个持续进行的过程，大致分为四个方面：
+seo 是一个持续进行的过程，大致分为四个方面：
 
-关键词研究、**页面 SEO**、**链接建设**、技术性 SEO
+关键词研究、**页面 seo**、**链接建设**、技术性 seo
 
-## 一、TDK
+## 一、tdk
 
-TDK 是 Title(标题)、Description（描述）和 Keywords（关键词）的缩写，是网站 SEO 的关键
+tdk 是 title（标题）、description（描述）和 keywords（关键词）的缩写，是网站 seo 的关键。
 
 ### title
 
-页面标题的内容可能对搜索引擎优化（SEO）具有重要意义。通常，较长的描述性标题要比简短或一般性标题更好。
+页面标题的内容可能对搜索引擎优化（seo）具有重要意义。通常，较长的描述性标题要比简短或一般性标题更好。
 
 ```html
 <title>标题</title>
@@ -58,23 +58,23 @@ TDK 是 Title(标题)、Description（描述）和 Keywords（关键词）的缩
 
 ::: warning 注意
 不同页面的关键词应该**尽量不重复**，避免关键词相互竞争, 关键词的数量应控制在 4-8 个，过多可能会被搜索引擎认为是关键词堆砌，影响
-SEO 效果
+seo 效果
 :::
 
 因为滥用等原因，大多数主流搜索引擎已经大幅降低了 keywords 元标签对网页排名的影响
 ​
 
 ::: tip 提示
-对于不同页面，可设置不同的 TDK，来增加关键词的收录量
+对于不同页面，可设置不同的 tdk，来增加关键词收录量
 :::
 
-## 二、OG 协议
+## 二、og 协议
 
-Open Graph Protocol（开放图谱协议），简称 OG 协议。它是一种**为社交分享而生**的 Meta
+openGraphProtocol（开放图谱协议），简称 og 协议。它是一种**为社交分享而生**的 meta
 标签，用于标准化网页中元数据的使用，使得社交媒体得以以丰富的“图形”对象来表示共享的页面内容。它允许在 Facebook 上，其他网站能像
-Facebook 内容一样具有丰富的“图形”对象，进而促进 Facebook 和其他网站之间的集成。也有利于 SEO 优化。
+facebook 内容一样具有丰富的“图形”对象，进而促进 facebook 和其他网站之间的集成。也有利于 seo 优化。
 
-常见的 OG 标签包括：
+常见的 og 标签包括：
 
 ```html
 <meta property="og:title" content="页面标题" />
@@ -87,18 +87,18 @@ Facebook 内容一样具有丰富的“图形”对象，进而促进 Facebook �
 
 在社交媒体中的表现形态，例如飞书：
 
-![og](/img/og.png)
+![og](/feishu-og-preview.png)
 
 :::tip 提示
 查看更多：[The Open Graph protocol](https://ogp.me/)
 :::
 
-## 三、HTML 语义化
+## 三、html 语义化
 
-HTML 语义化主要作用有以下几点：
+html 语义化主要作用有以下几点：
 
 1. 方便屏幕阅读器解析
-2. 有利于 SEO，搜索引擎更容易理解语义化页面的内容结构和主题
+2. 有利于 seo，搜索引擎更容易理解语义化页面的内容结构和主题
 3. 便于团队开发和维护，语义化更具有可读性
 
 ### 标题标签
@@ -132,7 +132,7 @@ HTML 语义化主要作用有以下几点：
 
 ### 图片标签
 
-图像标签的 alt 属性有助于图像 SEO，并在网络故障时，代替图片显示
+图像标签的 alt 属性有助于图像 seo，并在网络故障时代替图片显示
 
 ### 布局标签
 
@@ -140,7 +140,7 @@ HTML 语义化主要作用有以下几点：
 
 ## 四、sitemap 站点地图
 
-Sitemap 可方便管理员通知搜索引擎他们网站上有哪些可供抓取的网页。最简单的 Sitepmap 形式，就是 XML
+sitemap 可方便管理员通知搜索引擎他们网站上有哪些可供抓取的网页。最简单的 sitemap 形式，就是 xml
 文件，在其中列出网站中的网址以及关于每个网址的其他元数据（上次更新的时间、更改的频率以及相对于网站上其他网址的重要程度为何等），以便搜索引擎可以更加智能地抓取网站。
 
 例如在根目录下新建 `sitemap.xml` 内容格式如下：
@@ -168,15 +168,15 @@ priority：页面相对于其他页面优先级，它的值范围是 0.0 到 1.0
 
 :::tip 提示
 
-如果 sitemap.xml 没有放在根目录，需在 robots.txt 中指明 Sitemap 位置，否则搜索引擎可能无法找到
+如果 sitemap.xml 没有放在根目录，需在 robots.txt 中指明 sitemap 位置，否则搜索引擎可能无法找到
 
 查看更多 [sitemaps.org - Protocol](https://www.sitemaps.org/protocol.html)
 
 :::
 
-## 五、 robots 文件
+## 五、robots 文件
 
-Robots.txt 文件是用来告诉搜索引擎，网站上的哪些页面可以抓取，哪些页面不能抓取。
+robots.txt 文件是用来告诉搜索引擎，网站上的哪些页面可以抓取，哪些页面不能抓取。
 
 如果你的网站已经有了 robots.txt 文件，那么你可以通过 *domain.com/robots.txt*这个链接进行访问。
 
@@ -202,7 +202,7 @@ Sitemap：使用此指令来标记你网站地图所的位置。如果你对网�
 
 小提示，你可以在 robots.txt 中使用多条 sitemap 指令。
 
-查看更多：[关于 Robots.txt 和 SEO: 你所需要知道的一切](https://ahrefs.com/blog/zh/robots-txt/)
+查看更多：[关于 robots.txt 和 seo：你所需要知道的一切](https://ahrefs.com/blog/zh/robots-txt/)
 
 :::
 
@@ -220,18 +220,18 @@ Sitemap：使用此指令来标记你网站地图所的位置。如果你对网�
 
 必应：[www.bing.com/webmasters/…](https://link.zhihu.com/?target=https%3A//link.juejin.cn/%3Ftarget%3Dhttps%253A%252F%252Fwww.bing.com%252Fwebmasters%252Fabout)
 
-## 七、SSR、SSG、ISR
+## 七、ssr、ssg、isr
 
-爬虫只能抓取到网页的静态源代码，而无法执行其中的 JavaScript 脚本。当网站采用 Vue 或 React 构建 SPA 项目时，页面上的大部分
-DOM 元素实际上是在客户端通过 JavaScript 动态生成的。这意味着爬虫能够直接抓取和分析的内容会大幅减少。
+爬虫只能抓取到网页的静态源代码，而无法执行其中的 js 脚本。当网站采用 vue 或 react 构建 spa 项目时，页面上的大部分
+dom 元素实际上是在客户端通过 js 动态生成的。这意味着爬虫能够直接抓取和分析的内容会大幅减少。
 
-参考：[什么是 CSR、SSR、SSG、ISR - 渲染模式详解](https://zhuanlan.zhihu.com/p/640900230)
+参考：[什么是 csr、ssr、ssg、isr - 渲染模式详解](https://zhuanlan.zhihu.com/p/640900230)
 
-爬虫除了不会抓取 JavaScript 脚本的内容，也不会抓取 iframe 中的内容，因此项目中少用 iframe
+爬虫除了不会抓取 js 脚本内容，也不会抓取 iframe 中的内容，因此项目中少用 iframe
 
 ## 八、网址规范化
 
-例如，一个页面可能有多个 URL 地址，比如：
+例如，一个页面可能有多个 url 地址，比如：
 
 https://example.com/article.html
 
@@ -239,7 +239,7 @@ https://example.com/article
 
 https://www.example.com/article
 
-这些 URL 指向同一个页面内容。但是，我们应该指定其中一个作为该页面的规范化 URL
+这些 url 指向同一个页面内容。但是，我们应该指定其中一个作为该页面的规范化 url
 
 ```html
 <link rel="canonical" href="https://www.example.com/article" />
@@ -259,12 +259,12 @@ https://www.example.com/article
 
 [Ahrefs 博客](https://ahrefs.com/blog/zh/)
 
-[SEO 初学者指南](https://ahrefs.com/zh/seo)
+[seo 初学者指南](https://ahrefs.com/zh/seo)
 
 [The Open Graph protocol](https://ogp.me/)
 
 [sitemaps.org - Protocol](https://www.sitemaps.org/protocol.html)
 
-[关于 Robots.txt 和 SEO: 你所需要知道的一切](https://ahrefs.com/blog/zh/robots-txt/)
+[关于 robots.txt 和 seo：你所需要知道的一切](https://ahrefs.com/blog/zh/robots-txt/)
 
-[什么是 CSR、SSR、SSG、ISR - 渲染模式详解](https://zhuanlan.zhihu.com/p/640900230)
+[什么是 csr、ssr、ssg、isr - 渲染模式详解](https://zhuanlan.zhihu.com/p/640900230)

@@ -16,3 +16,15 @@
     --vp-home-hero-image-filter: blur(68px);
   }
 }
+
+/* Reduce Mermaid diagrams to a more compact readable size */
+.vp-doc .mermaid {
+  max-width: 560px;
+  margin: 16px auto;
+  font-size: 12px;
+}
+
+.vp-doc .mermaid svg {
+  max-width: 100%;
+  height: auto;
+}

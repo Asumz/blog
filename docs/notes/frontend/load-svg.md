@@ -1,18 +1,18 @@
-# 加载 SVG
+# 加载 svg
 
 ## 前言
 
-SVG 作为矢量图的一种标准格式，已经得到了各大浏览器的支持，它也成为了 Web 中矢量图的代名词。 在网页中采用 SVG 代替位图有如下好处：
+svg 作为矢量图的一种标准格式，已经得到了各大浏览器的支持，它也成为了 web 中矢量图的代名词。在网页中采用 svg 代替位图有如下好处：
 
-- SVG 相对于位图更清晰，在任意缩放的情况下后不会破坏图形的清晰度，SVG 能方便地解决高分辨率屏幕下图像显示不清楚的问题。
+- svg 相对于位图更清晰，在任意缩放的情况下不会破坏图形清晰度，svg 能方便地解决高分辨率屏幕下图像显示不清楚的问题。
 
-- 在图形线条比较简单的情况下，SVG 文件的大小要小于位图，在扁平化 UI 流行的今天，多数情况下 SVG 会更小。
+- 在图形线条比较简单的情况下，svg 文件的大小要小于位图，在扁平化 ui 流行的今天，多数情况下 svg 会更小。
 
-- 图形相同的 SVG 比对应的高清图有更好的渲染性能。
+- 图形相同的 svg 比对应的高清图有更好的渲染性能。
 
-- SVG 采用和 HTML 一致的 XML 语法描述，灵活性很高。
+- svg 采用和 html 一致的 xml 语法描述，灵活性很高。
 
-## SVG 基本使用方式
+## svg 基本使用方式
 
 ### html 中嵌入
 
@@ -36,7 +36,7 @@ body {
 <img src="/favicon.svg" />
 ```
 
-## SVG 工具
+## svg 工具
 
 ### 使用 url-loader
 
@@ -94,12 +94,12 @@ module.exports = {
 
 ### [使用 svg-sprite-loader](https://www.npmjs.com/package/svg-sprite-loader)
 
-> 用于创建 SVG 精灵图的 webpack loader。
+> 用于创建 svg 精灵图的 webpack loader。
 
-Sprites 是自动呈现和注入到页面中的，原理是将多个 svg 合成 SVG `<symbol>`，通过 `symbol id` 来引用图像。
+sprites 会自动呈现并注入到页面中，原理是将多个 svg 合成 svg `<symbol>`，通过 `symbol id` 引用图像。
 
 ::: warning 注意
-Sprites 只需要在项目初始进行一次 HTTP 请求，但在复杂项目中需要注意 Sprites 大小
+sprites 只需要在项目初始进行一次 http 请求，但在复杂项目中需要注意 sprites 大小。
 :::
 
 使用如下
@@ -146,14 +146,14 @@ extract 配置如下 (default false, autoconfigured)
 }
 ```
 
-### [使用 SVGO](https://github.com/svg/svgo?tab=readme-ov-file)
+### [使用 svgo](https://github.com/svg/svgo?tab=readme-ov-file)
 
 > ⚙️ Node.js tool for optimizing SVG files
 
-SVGO 可以精简压缩文本中的无用信息，对于向量编辑器导出的 SVG 文件能压缩 70%左右（具体表现要看冗余信息量）！
+svgo 可以精简压缩文本中的无用信息，对于向量编辑器导出的 svg 文件能压缩 70% 左右（具体表现要看冗余信息量）！
 
-许多应用程序和框架已经依赖或支持 SVGO 的集成。项目里从 `svgo.config.mjs` 读取配置。
+许多应用程序和框架已经依赖或支持 svgo 集成。项目里从 `svgo.config.mjs` 读取配置。
 
-项目里一般会设置 `fill: currentColor` 属性，让 SVG 的颜色跟随父元素的 color 值变化
+项目里一般会设置 `fill: currentColor` 属性，让 svg 颜色跟随父元素的 color 值变化。
 
 [查阅更多配置项](https://svgo.dev/docs/introduction/)

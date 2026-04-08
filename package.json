@@ -8,8 +8,10 @@
     "format:check": "prettier --check ."
   },
   "devDependencies": {
+    "mermaid": "^10.9.5",
     "prettier": "^3.8.1",
     "rimraf": "^5.0.7",
-    "vitepress": "^1.1.4"
+    "vitepress": "^1.1.4",
+    "vitepress-plugin-mermaid": "^2.0.17"
   }
 }
