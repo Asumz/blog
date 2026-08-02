@@ -13,7 +13,7 @@ hero:
   actions:
     - theme: brand
       text: 随笔
-      link: /notes/frontend/http-cache
+      link: /notes/
     - theme: alt
       text: VitePress
       link: https://vitepress.dev/zh/
