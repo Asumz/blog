@@ -5,14 +5,13 @@ function nav(): DefaultTheme.NavItem[] {
     {
       text: '随笔',
       activeMatch: '/notes/',
-      link: '/notes/dev-snacks',
+      link: '/notes/frontend/http-cache',
     },
   ]
 }
 
 function sidebarItems(): DefaultTheme.SidebarItem[] {
   return [
-    { text: '🍪 开发零食铺', link: 'dev-snacks' },
     {
       text: '📝 项目随笔',
       collapsed: false,
@@ -28,11 +27,8 @@ function sidebarItems(): DefaultTheme.SidebarItem[] {
       base: '/notes/frontend/',
       items: [
         { text: 'http 缓存', link: 'http-cache' },
-        { text: '学习 seo', link: 'seo' },
         { text: '了解 jsBridge', link: 'js-bridge' },
-        { text: '加载 svg', link: 'load-svg' },
-        { text: '实现一个 bind 函数', link: 'bind-polyfill' },
-        { text: '实现一个 cloneDeep 函数', link: 'clone-deep' },
+        { text: '了解 seo', link: 'seo' },
       ],
     },
   ]
