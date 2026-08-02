@@ -23,6 +23,7 @@ function sidebarItems(): DefaultTheme.SidebarItem[] {
         { text: 'HugeAuto SEO 工程化', link: 'hugeauto-seo' },
         { text: 'HugeAuto 部分 SSR 与数据水合', link: 'hugeauto-partial-ssr' },
         { text: 'HugeAuto RTL 与移动端适配', link: 'hugeauto-rtl-mobile' },
+        { text: 'HugeAuto 统一收银台', link: 'hugeauto-checkout' },
       ],
     },
     {

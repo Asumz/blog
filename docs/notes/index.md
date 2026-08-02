@@ -11,6 +11,7 @@
 - [HugeAuto SEO 工程化：从 TDK 到结构化数据](/notes/hugeauto-seo)
 - [HugeAuto 部分 SSR 与数据水合实践](/notes/hugeauto-partial-ssr)
 - [HugeAuto RTL 与移动端适配](/notes/hugeauto-rtl-mobile)
+- [HugeAuto 统一收银台：多渠道 SDK 与异步支付状态](/notes/hugeauto-checkout)
 
 ## 🌐 前端随笔
 
