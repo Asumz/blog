@@ -5,51 +5,42 @@ import { routes } from './routes'
 
 export default withMermaid(
   defineConfig({
-  lang: 'zh-CN',
-  title: '项目随笔',
-  description: 'Jot down the stuff worth sharing',
+    lang: 'zh-CN',
+    title: '随笔',
+    description: '好记性不如烂笔头',
 
-  lastUpdated: true,
-  cleanUrls: true,
-  metaChunk: true,
+    lastUpdated: true,
+    cleanUrls: true,
+    metaChunk: true,
 
-  /* prettier-ignore */
-  head: [
-        ['link', {rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg'}],
-        ['link', {rel: 'apple-touch-icon', href: '/vitepress-logo-mini.png'}],
-        ['meta', {name: 'theme-color', content: '#5f67ee'}],
-        ['meta', {property: 'og:type', content: 'website'}],
-        ['meta', {property: 'og:locale', content: 'zh'}],
-        ['meta', {property: 'og:site_name', content: '项目随笔'}],
-        ['meta', {property: 'og:title', content: '项目随笔 - 在报错和灵感间反复横跳'}],
-        ['meta', {property: 'og:description', content: 'Jot down the stuff worth sharing'}],
-        ['meta', {property: 'og:image', content: 'https://asumz.pages.dev/hero-light.svg'}],
-        ['meta', {property: 'og:url', content: 'https://asumz.pages.dev/'}],
+    head: [
+      ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
+      ['meta', { name: 'theme-color', content: '#5f67ee' }],
     ],
 
-  themeConfig: {
-    logo: { src: '/favicon.svg', width: 24, height: 24 },
-    externalLinkIcon: true,
+    themeConfig: {
+      logo: { src: '/logo.svg', width: 24, height: 24 },
+      externalLinkIcon: true,
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/Asumz' }],
+      socialLinks: [{ icon: 'github', link: 'https://github.com/Asumz' }],
 
-    footer: {
-      message: 'Powered by VitePress',
-    },
-
-    search: {
-      provider: 'local',
-      options: {
-        locales: { ...zhSearch },
+      footer: {
+        message: 'Powered by VitePress',
       },
+
+      search: {
+        provider: 'local',
+        options: {
+          locales: { ...zhSearch },
+        },
+      },
+
+      nav: routes.nav,
+      sidebar: routes.sidebar,
     },
 
-    nav: routes.nav,
-    sidebar: routes.sidebar,
-  },
-
-  locales: {
-    root: { label: '简体中文', ...zh },
-  },
+    locales: {
+      root: { label: '简体中文', ...zh },
+    },
   }),
 )

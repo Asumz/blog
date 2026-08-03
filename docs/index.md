@@ -1,23 +1,20 @@
----
-# https://vitepress.dev/reference/default-theme-home-page
-layout: home
+# 随笔
 
-hero:
-  name: 项目随笔
-  # text: 个人博客
-  tagline: 好记性不如烂笔头
-  image:
-    alt: oops
-    light: /hero-light.svg
-    dark: /hero-dark.svg
-  actions:
-    - theme: brand
-      text: 随笔
-      link: /notes/
-    - theme: alt
-      text: VitePress
-      link: https://vitepress.dev/zh/
-    - theme: alt
-      text: GitHub
-      link: https://github.com/Asumz
----
+记录项目实践、前端技术和开发过程中值得留下的经验。
+
+## 项目随笔
+
+- [大风车 PC 跨应用弹窗](/notes/dfc-cross-app-modal)
+- [大风车 App 灰度迁移](/notes/dfc-app-gray-migration)
+- [大风车 H5 分享活动](/notes/dfc-h5-share-activity)
+- [HugeAuto 多语言实践：从 URL Locale 到 RTL](/notes/hugeauto-i18n)
+- [HugeAuto SEO 工程化：从 TDK 到结构化数据](/notes/hugeauto-seo)
+- [HugeAuto 部分 SSR 与数据水合实践](/notes/hugeauto-partial-ssr)
+- [HugeAuto RTL 与移动端适配](/notes/hugeauto-rtl-mobile)
+- [HugeAuto 统一收银台：多渠道 SDK 与异步支付状态](/notes/hugeauto-checkout)
+
+## 前端随笔
+
+- [HTTP 缓存](/notes/frontend/http-cache)
+- [了解 JSBridge](/notes/frontend/js-bridge)
+- [了解 SEO](/notes/frontend/seo)

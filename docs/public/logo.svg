@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="随笔">
+  <rect x="4" y="4" width="56" height="56" rx="16" fill="#5f67ee"/>
+  <path d="M18 13h21l9 9v29H18z" fill="#fff"/>
+  <path d="M39 13v9h9z" fill="#b8bcff"/>
+  <path d="M39 28c-7-4-16-1-16 4 0 6 16 2 16 9 0 5-8 7-15 4" fill="none" stroke="#5f67ee" stroke-width="4" stroke-linecap="round"/>
+  <path d="m24 45-6 4 2-7z" fill="#23243a"/>
+  <path d="m16 13 1.4 3.6L21 18l-3.6 1.4L16 23l-1.4-3.6L11 18l3.6-1.4z" fill="#fff"/>
+</svg>

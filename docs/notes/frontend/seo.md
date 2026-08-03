@@ -85,10 +85,6 @@ facebook 内容一样具有丰富的“图形”对象，进而促进 facebook �
 <meta property="og:release_date" content="定义网页内容的发布时间" />
 ```
 
-在社交媒体中的表现形态，例如飞书：
-
-![og](/feishu-og-preview.png)
-
 :::tip 提示
 查看更多：[The Open Graph protocol](https://ogp.me/)
 :::

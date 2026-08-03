@@ -4,8 +4,12 @@ function nav(): DefaultTheme.NavItem[] {
   return [
     {
       text: '随笔',
-      activeMatch: '/notes/',
-      link: '/notes/',
+      activeMatch: '^/$|^/notes/',
+      link: '/',
+    },
+    {
+      text: 'VitePress',
+      link: 'https://vitepress.dev/zh',
     },
   ]
 }
@@ -13,8 +17,9 @@ function nav(): DefaultTheme.NavItem[] {
 function sidebarItems(): DefaultTheme.SidebarItem[] {
   return [
     {
-      text: '📝 项目随笔',
+      text: '项目随笔',
       collapsed: false,
+      base: '/notes/',
       items: [
         { text: '大风车pc 跨应用弹窗', link: 'dfc-cross-app-modal' },
         { text: '大风车app 灰度迁移', link: 'dfc-app-gray-migration' },
@@ -27,7 +32,7 @@ function sidebarItems(): DefaultTheme.SidebarItem[] {
       ],
     },
     {
-      text: '🌐 前端随笔',
+      text: '前端随笔',
       collapsed: false,
       base: '/notes/frontend/',
       items: [
@@ -41,7 +46,5 @@ function sidebarItems(): DefaultTheme.SidebarItem[] {
 
 export const routes: DefaultTheme.Config = {
   nav: nav(),
-  sidebar: {
-    '/notes/': { base: '/notes/', items: sidebarItems() },
-  },
+  sidebar: sidebarItems(),
 }
