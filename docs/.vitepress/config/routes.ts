@@ -4,7 +4,7 @@ function nav(): DefaultTheme.NavItem[] {
   return [
     {
       text: '随笔',
-      activeMatch: '^/$|^/notes/',
+      activeMatch: '/',
       link: '/',
     },
     {
@@ -14,7 +14,7 @@ function nav(): DefaultTheme.NavItem[] {
   ]
 }
 
-function sidebarItems(): DefaultTheme.SidebarItem[] {
+function siderbar(): DefaultTheme.SidebarItem[] {
   return [
     {
       text: '项目随笔',
@@ -33,7 +33,7 @@ function sidebarItems(): DefaultTheme.SidebarItem[] {
     {
       text: '前端随笔',
       collapsed: false,
-      base: '/notes/frontend/',
+      base: '/frontend/',
       items: [
         { text: 'HTTP 缓存', link: 'http-cache' },
         { text: '了解 JSBridge', link: 'js-bridge' },
@@ -45,5 +45,5 @@ function sidebarItems(): DefaultTheme.SidebarItem[] {
 
 export const routes: DefaultTheme.Config = {
   nav: nav(),
-  sidebar: sidebarItems(),
+  sidebar: siderbar(),
 }

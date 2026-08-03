@@ -6,7 +6,6 @@ export default withMermaid(
   defineConfig({
     lang: 'zh-CN',
     title: '随笔',
-    description: '好记性不如烂笔头',
 
     lastUpdated: true,
     cleanUrls: true,

@@ -14,6 +14,6 @@
 
 ## 前端随笔
 
-- [HTTP 缓存](/notes/frontend/http-cache)
-- [了解 JSBridge](/notes/frontend/js-bridge)
-- [了解 SEO](/notes/frontend/seo)
+- [HTTP 缓存](/frontend/http-cache)
+- [了解 JSBridge](/frontend/js-bridge)
+- [了解 SEO](/frontend/seo)
