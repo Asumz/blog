@@ -1,6 +1,5 @@
 import { defineConfig } from 'vitepress'
 import { withMermaid } from 'vitepress-plugin-mermaid'
-import { search as zhSearch, zh } from './zh'
 import { routes } from './routes'
 
 export default withMermaid(
@@ -22,25 +21,59 @@ export default withMermaid(
       logo: { src: '/logo.svg', width: 24, height: 24 },
       externalLinkIcon: true,
 
-      socialLinks: [{ icon: 'github', link: 'https://github.com/Asumz' }],
-
-      footer: {
-        message: 'Powered by VitePress',
+      docFooter: {
+        prev: '上一页',
+        next: '下一页',
       },
+
+      outline: {
+        label: '页面导航',
+      },
+
+      lastUpdated: {
+        text: '最后更新于',
+        formatOptions: {
+          dateStyle: 'short',
+          timeStyle: 'medium',
+        },
+      },
+
+      editLink: {
+        pattern: 'https://github.com/Asumz/blog/edit/main/docs/:path',
+        text: '在 GitHub 上编辑此页面',
+      },
+
+      returnToTopLabel: '回到顶部',
+      sidebarMenuLabel: '菜单',
+      darkModeSwitchLabel: '主题',
+      lightModeSwitchTitle: '切换到浅色模式',
+      darkModeSwitchTitle: '切换到深色模式',
+
+      socialLinks: [{ icon: 'github', link: 'https://github.com/Asumz' }],
 
       search: {
         provider: 'local',
         options: {
-          locales: { ...zhSearch },
+          translations: {
+            button: {
+              buttonText: '搜索文档',
+            },
+            modal: {
+              displayDetails: '显示详情',
+              noResultsText: '未找到相关结果',
+              resetButtonTitle: '清除',
+              footer: {
+                closeText: '关闭',
+                selectText: '选择',
+                navigateText: '切换',
+              },
+            },
+          },
         },
       },
 
       nav: routes.nav,
       sidebar: routes.sidebar,
-    },
-
-    locales: {
-      root: { label: '简体中文', ...zh },
     },
   }),
 )
