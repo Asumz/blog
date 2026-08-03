@@ -26,25 +26,18 @@ HugeAuto 官网同时有两类页面。
 服务端完成路由匹配后再读取 meta。需要 SSR 时执行 `renderToString`，否则直接返回 CSR 模板。
 
 ```mermaid
-sequenceDiagram
-  participant B as Browser
-  participant S as Express
-  participant V as Vue App
-  participant A as API
-
-  B->>S: 请求 URL
-  S->>V: createApp(request)
-  V->>V: 匹配路由与 meta.ssr
-  alt SSR 页面
-    V->>A: 获取首屏数据
-    A-->>V: 返回数据
-    V-->>S: HTML + Head + CSS + Pinia
-    S-->>B: 完整页面
-    B->>V: 注水并水合
-  else CSR 页面
-    S-->>B: HTML 模板
-    B->>V: 客户端挂载
-  end
+flowchart TD
+  A[浏览器请求 URL] --> B[Express 接收请求]
+  B --> C[createApp request]
+  C --> D[匹配路由并解析 meta.ssr]
+  D --> E{当前路由是否启用 SSR}
+  E -->|是| F[获取首屏数据]
+  F --> G[renderToString 渲染应用]
+  G --> H[生成 HTML、Head、CSS 与 Pinia 状态]
+  H --> I[返回完整页面]
+  I --> J[客户端恢复 Pinia 并完成水合]
+  E -->|否| K[返回 CSR HTML 模板]
+  K --> L[客户端创建应用并挂载]
 ```
 
 真正让我多花时间的不是 `renderToString`，而是 meta 的继承。嵌套路由中，父布局和子页面可能都定义 `ssr`、`auth`、`footer` 或 `noindex`。如果不同地方使用不同的判断方式，同一条路由在服务端和守卫中可能得到不同结论。

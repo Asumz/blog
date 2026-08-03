@@ -7,10 +7,9 @@
 - [大风车 PC 跨应用弹窗](/notes/dfc-cross-app-modal)
 - [大风车 App 灰度迁移](/notes/dfc-app-gray-migration)
 - [大风车 H5 分享活动](/notes/dfc-h5-share-activity)
-- [HugeAuto 多语言实践：从 URL Locale 到 RTL](/notes/hugeauto-i18n)
+- [HugeAuto 多语言实践：从 URL Locale 到 RTL 布局](/notes/hugeauto-i18n)
 - [HugeAuto SEO 工程化：从 TDK 到结构化数据](/notes/hugeauto-seo)
 - [HugeAuto 部分 SSR 与数据水合实践](/notes/hugeauto-partial-ssr)
-- [HugeAuto RTL 与移动端适配](/notes/hugeauto-rtl-mobile)
 - [HugeAuto 统一收银台：多渠道 SDK 与异步支付状态](/notes/hugeauto-checkout)
 
 ## 前端随笔

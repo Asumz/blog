@@ -14,6 +14,7 @@ export default withMermaid(
 
     head: [
       ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
+      ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }],
       ['meta', { name: 'theme-color', content: '#5f67ee' }],
     ],
 

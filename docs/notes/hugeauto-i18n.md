@@ -1,4 +1,4 @@
-# HugeAuto 多语言实践：从 URL Locale 到 RTL
+# HugeAuto 多语言实践：从 URL Locale 到 RTL 布局
 
 ## 一开始，我以为这只是一次翻译改造
 
@@ -93,26 +93,101 @@ location.assign(target.href)
 
 我更喜欢这种做法，因为它把“页面是什么语言”和“用户可能喜欢什么语言”分开了。前者由 URL 决定，后者只提供建议。
 
-## 阿拉伯语让隐藏的问题全部暴露出来
+## 阿拉伯语把多语言推进到了布局层
 
-中、英、法语主要改变文字长度，阿拉伯语则直接改变阅读方向。它迫使我重新检查整条多语言链路。
+中、英、法语主要改变文字长度，阿拉伯语还会把阅读方向从 LTR 改为 RTL。locale 因此不能只决定 `vue-i18n` 使用哪份 JSON，还要同步页面根节点、组件库和日期格式：
 
-页面根节点需要输出正确的语言和方向：
-
-```html
-<html lang="ar" dir="rtl"></html>
+```js
+head.push({
+  htmlAttrs: {
+    lang: locale.value,
+    dir: locale.value === 'ar' ? 'rtl' : 'ltr',
+  },
+})
 ```
 
-Ant Design Vue 需要同时切换 locale 和 direction；Day.js 也要动态加载对应语言，否则页面正文已经是阿拉伯语，日期仍会显示英文月份。
+```vue
+<ConfigProvider
+  :locale="antLocale"
+  :direction="locale === 'ar' ? 'rtl' : 'ltr'"
+>
+  <router-view />
+</ConfigProvider>
+```
 
-更麻烦的是，RTL 不能理解成“整页水平镜像”。返回箭头通常要翻转，播放图标不需要；电话号码、邮箱、VIN 和代码片段应该保持 LTR；品牌 Logo 和车辆图片更不能被直接镜像。
+Day.js 也根据同一个 locale 动态加载语言。这样 URL 解析出的结果会沿着一条确定的链路影响文案、`lang`、`dir`、组件和日期，而不是让每个模块各自判断。
 
-这时我才真正意识到，多语言和 RTL 是两类问题：
+这在 SSR 下尤其重要。如果服务端先输出 `dir="ltr"`，客户端水合后再改成 `rtl`，页面会先以错误方向出现，然后整体跳动。阅读方向与文案一样，都是首屏 HTML 的一部分。
 
-- i18n 解决内容使用哪种语言
-- dir 和样式系统解决内容按照什么方向排列
+## RTL 不是把页面整体镜像
 
-把 RTL 当成翻译工作的附属步骤，通常会在页面上线前留下大量细碎问题。
+英文页面长期稳定后，样式里很容易积累 `margin-left`、`padding-right` 和 `text-align: left`。能够表达语义时，我优先改用逻辑属性：
+
+```less
+.card {
+  margin-inline-start: 12px;
+  padding-inline-end: 16px;
+  text-align: start;
+}
+```
+
+逻辑属性由浏览器根据 `dir` 解释，不需要维护两套值。不过并不是所有内容都应该翻转：返回和上一页图标通常跟随阅读方向，播放按钮、品牌 Logo 和车辆图片通常保持原样；电话、邮箱、VIN、价格和代码片段则需要局部使用 `dir="ltr"`。
+
+手机号是很典型的例外。页面可以按照 RTL 排列，但号码本身仍然要从左到右阅读，不能反转字符串或数字顺序。号码中如果包含国际区号、空格、连字符或括号，直接继承父级的 `dir="rtl"` 还可能让 `+` 等符号跑到错误位置。
+
+展示动态手机号时，我会用 `bdi` 把它隔离成一段独立的 LTR 内容：
+
+```vue
+<a :href="`tel:${phone}`">
+  <bdi dir="ltr">{{ phone }}</bdi>
+</a>
+```
+
+`dir="ltr"` 固定号码内部的阅读方向，`bdi` 则避免它影响周围的阿拉伯语文本。外层容器的对齐方式仍然可以跟随 RTL，接口值和 `tel:` 链接也保持原始号码，不对内容本身做镜像或倒序处理。
+
+为了处理已有的大量物理属性，项目使用 `postcss-rtlcss` 的 combined 模式自动生成 LTR 与 RTL 规则。新代码仍优先使用逻辑属性，插件负责无法立即迁移的旧样式。
+
+自动化也有明确边界。写在 Vue 模板 `style` 属性里的声明不会经过 PostCSS，因此既不会被 RTL 翻转，也不会进入项目的响应式 px 转换。需要响应语言方向或视口变化的样式必须放进 class。
+
+## 移动端暴露了自动翻转的边界
+
+移动端不是多语言改造的主线，却是很有效的压力测试。桌面端还能容纳的法语文案在窄屏上可能换行，阿拉伯语则同时改变方向和控件位置。更隐蔽的问题来自构建后的 CSS。
+
+首页搜索区在桌面端使用绝对定位居中，移动端需要回到普通文档流：
+
+```less
+.page-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 480px) {
+  .page-center {
+    position: static;
+    left: auto;
+    transform: none;
+  }
+}
+```
+
+按源码顺序，移动端规则理应覆盖桌面端。实际却只有 `position: static` 生效，`transform: none` 被划掉。
+
+原因是 RTL 插件会给桌面端的方向性声明生成类似 `[dir='ltr'] .page-center[data-v-xxx]` 的选择器；移动端的 `transform: none` 是对称值，不需要拆分，仍然接近 `.page-center[data-v-xxx]`。前者多了一个 `[dir]`，特异性更高，源码顺序已经无法决定结果。
+
+最后我只为这个局部冲突补足特异性：
+
+```less
+@media @mobile-media {
+  .page-center.page-center {
+    position: static;
+    left: auto;
+    transform: none;
+  }
+}
+```
+
+我没有使用 `!important`，也没有在业务代码中再手写一套 `[dir]` 规则。这个问题真正留下的经验是：自动化工具改变了最终 CSS，遇到层叠异常时要先看 DevTools 中实际胜出的完整选择器，而不是只盯着 Less 源码。
 
 ## 语言包也经历了一次整理
 
@@ -141,5 +216,7 @@ src/locales/
 做完之后，我不再把多语言理解成“给 `t()` 准备更多 JSON”。
 
 真正稳定的多语言页面需要先建立一条清楚的因果链：URL 决定 locale，locale 决定语言包、页面方向和 SEO，用户偏好只影响下一次主动选择。只要链路中还有第二个模块在偷偷猜语言，SSR、水合或搜索索引迟早会出现不一致。
+
+实际验证时，我会优先使用能代表不同风险的组合：法语检查文字扩张，阿拉伯语检查阅读方向，再把两者放到移动端观察换行、溢出和结构重排。这比只在中文桌面页面上走一遍流程更容易发现问题。
 
 阿拉伯语也让我看到自动化的边界。工具可以加载语言包、翻转常规 CSS，却无法判断一张图片、一枚图标或一串数字在业务上是否应该改变方向。那部分仍然需要开发者理解内容本身。
