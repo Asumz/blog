@@ -22,42 +22,11 @@ export default withMermaid(
       externalLinkIcon: true,
 
       docFooter: {
-        prev: '上一页',
-        next: '下一页',
+        prev: false,
+        next: false,
       },
-
-      outline: {
-        label: '页面导航',
-      },
-
-      returnToTopLabel: '回到顶部',
-      sidebarMenuLabel: '菜单',
-      darkModeSwitchLabel: '主题',
-      lightModeSwitchTitle: '切换到浅色模式',
-      darkModeSwitchTitle: '切换到深色模式',
 
       socialLinks: [{ icon: 'github', link: 'https://github.com/Asumz/blog' }],
-
-      search: {
-        provider: 'local',
-        options: {
-          translations: {
-            button: {
-              buttonText: '搜索文档',
-            },
-            modal: {
-              displayDetails: '显示详情',
-              noResultsText: '未找到相关结果',
-              resetButtonTitle: '清除',
-              footer: {
-                closeText: '关闭',
-                selectText: '选择',
-                navigateText: '切换',
-              },
-            },
-          },
-        },
-      },
 
       nav: routes.nav,
       sidebar: routes.sidebar,
