@@ -21,13 +21,12 @@ function siderbar(): DefaultTheme.SidebarItem[] {
       collapsed: false,
       base: '/notes/',
       items: [
-        { text: '大风车 PC 跨应用弹窗', link: 'dfc-cross-app-modal' },
-        { text: '大风车 App 灰度迁移', link: 'dfc-app-gray-migration' },
-        { text: '大风车 H5 分享活动', link: 'dfc-h5-share-activity' },
         { text: 'HugeAuto 多语言实践', link: 'hugeauto-i18n' },
         { text: 'HugeAuto SEO 工程化', link: 'hugeauto-seo' },
         { text: 'HugeAuto 部分 SSR 与数据水合', link: 'hugeauto-partial-ssr' },
         { text: 'HugeAuto 统一收银台', link: 'hugeauto-checkout' },
+        { text: '大风车 无界弹窗方案', link: 'dfc-wujie-modal' },
+        { text: '大风车 RN 灰度迁移到 H5', link: 'dfc-rn-to-h5-migration' },
       ],
     },
     {
@@ -35,9 +34,7 @@ function siderbar(): DefaultTheme.SidebarItem[] {
       collapsed: false,
       base: '/frontend/',
       items: [
-        { text: 'HTTP 缓存', link: 'http-cache' },
-        { text: '了解 JSBridge', link: 'js-bridge' },
-        { text: '了解 SEO', link: 'seo' },
+        { text: '现代前端 SEO', link: 'seo' },
       ],
     },
   ]

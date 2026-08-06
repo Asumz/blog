@@ -2,265 +2,202 @@
 head:
   - - meta
     - name: description
-      content: hello
-  - - meta
-    - name: keywords
-      content: super duper seo
+      content: 现代前端 SEO 实践：抓取、索引、规范化、JavaScript 渲染、结构化数据与 Core Web Vitals。
 ---
 
-# seo
+# 现代前端 SEO：从可抓取到可索引
 
-seo（搜索引擎优化）是一种用于提升网页在搜索引擎中的收录数量以及排序位置而做的优化行为。
+## 先区分抓取、索引和规范化
 
-所需的一切， 排名更高 ⭐ 并获得更多流量 ⛰️
+前端 SEO 不是给页面塞更多关键词，而是让搜索引擎能够稳定理解三个问题：
 
-## seo 怎么做
+| 问题         | 页面需要提供的信号                                  | 常见错误                      |
+| ------------ | --------------------------------------------------- | ----------------------------- |
+| 能否抓取     | 可访问的 URL、正常响应、可抓取链接、robots.txt      | 用 robots.txt 阻止索引        |
+| 能否索引     | 有价值的正文、正确状态码、robots meta               | 错误页返回 200，形成 soft 404 |
+| 哪个是主版本 | 重定向、`rel="canonical"`、一致的内部链接和 Sitemap | 多种 URL 信号互相冲突         |
 
-seo 是一个持续进行的过程，大致分为四个方面：
+`robots.txt` 控制的是爬虫能否请求资源，不等于禁止 URL 出现在搜索结果中。需要阻止索引时，应允许爬虫访问页面并返回 `noindex`，或者通过登录鉴权限制访问。参见 [Google 抓取与索引文档](https://developers.google.com/search/docs/crawling-indexing)。
 
-关键词研究、**页面 seo**、**链接建设**、技术性 seo
+## 页面标题和摘要，而不是 TDK
 
-## 一、tdk
-
-tdk 是 title（标题）、description（描述）和 keywords（关键词）的缩写，是网站 seo 的关键。
-
-### title
-
-页面标题的内容可能对搜索引擎优化（seo）具有重要意义。通常，较长的描述性标题要比简短或一般性标题更好。
+页面最重要的基础元数据仍然是 `title` 和 `description`：
 
 ```html
-<title>标题</title>
+<title>二手车价格与在售车型 | Example</title>
+<meta name="description" content="查看在售二手车的价格、里程、车况和门店信息。" />
 ```
 
-撰写好标题的一些准则和技巧：
+`title` 应准确描述当前页面，并在站内保持可区分。搜索结果没有固定的 55 或 60 字符硬限制，标题会根据设备宽度按需截断，搜索引擎也可能结合页面主标题等信号重新生成展示标题。参见 [标题链接最佳实践](https://developers.google.com/search/docs/appearance/title-link)。
 
-- 避免使用一两个单词的标题。对于词汇表或参考样式的页面，请使用描述性短语或术语 - 定义对。
-- 搜索引擎通常显示页面标题的前 55 至 60 个字符。超出此范围的文本可能会丢失，因此请尽量不要使标题更长。
-- 尝试确保你的标题在你自己的网站中尽可能唯一。标题重复（或几乎重复）可能会导致搜索结果不准确。
+`description` 用于概括页面，有机会成为搜索结果摘要，但不保证原样展示；搜索引擎也可能根据查询词从正文生成更相关的片段。它同样没有固定长度上限，重点是准确、具体且每页不同，而不是堆积排名关键词。参见 [搜索摘要说明](https://developers.google.com/search/docs/appearance/snippet)。
 
-### description
+`meta keywords` 不应再作为优化重点。Google 明确表示它对抓取、索引和排名都没有作用；其他搜索引擎的支持情况并不统一，除非目标平台明确要求，否则没有必要维护“每页若干关键词”的清单。页面主题应该通过真实正文、标题、链接上下文和结构化数据表达。参见 [Google 支持的 meta 标签](https://developers.google.com/search/docs/crawling-indexing/special-tags)。
 
-一段简短而精确的、对页面内容的描述。
+## 用 HTTP 状态表达资源状态
 
-```html
-<meta name="description" content="描述" />
-```
+页面内容和 HTTP 状态需要表达同一件事：
 
-注意：内容**不宜过短**，作为摘要信息展示的时候如果一行都显示不全，不利于吸引用户点击
+- 正常页面返回 `200`。
+- 永久迁移使用 `301` 或 `308`。
+- 资源不存在返回 `404`。
+- 资源永久删除且不会恢复时可以返回 `410`。
+- 登录后才能访问的资源返回适当的鉴权状态，并避免输出可索引的私有内容。
 
-### keywords
+SPA 最常见的问题是所有地址都返回同一份 `200` 模板。即使页面最终显示“未找到”，搜索引擎仍可能把它识别为 soft 404。公开详情页需要索引时，应让服务端或边缘层返回真实状态。
 
-与页面内容相关的关键词，使用逗号分隔。
+## JavaScript 能被渲染，但不应成为唯一保障
 
-```html
-<meta name="keywords" content="关键词" />
-```
+“爬虫完全不能执行 JavaScript”已经不准确。Google 使用 Chromium 渲染 JavaScript 页面，流程包括抓取、渲染和索引；但渲染可能排队，受阻的脚本和接口也会导致正文缺失，其他爬虫未必具备同样能力。参见 [JavaScript SEO 基础](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics)。
 
-::: warning 注意
-不同页面的关键词应该**尽量不重复**，避免关键词相互竞争, 关键词的数量应控制在 4-8 个，过多可能会被搜索引擎认为是关键词堆砌，影响
-seo 效果
-:::
+因此，SSR 和 SSG 不是排名捷径，而是提高可发现性和一致性的工程手段：
 
-因为滥用等原因，大多数主流搜索引擎已经大幅降低了 keywords 元标签对网页排名的影响
-​
+- 需要索引的标题、正文、链接和结构化数据尽量出现在初始 HTML。
+- 服务端与客户端输出相同的 canonical、robots 和语言信息。
+- 登录、支付、个人中心等无索引价值的页面可以继续使用 CSR。
+- 不要针对爬虫返回与用户不同的内容；动态渲染只适合作为临时兼容方案。
 
-::: tip 提示
-对于不同页面，可设置不同的 tdk，来增加关键词收录量
-:::
+## 规范化重复 URL
 
-## 二、og 协议
-
-openGraphProtocol（开放图谱协议），简称 og 协议。它是一种**为社交分享而生**的 meta
-标签，用于标准化网页中元数据的使用，使得社交媒体得以以丰富的“图形”对象来表示共享的页面内容。它允许在 Facebook 上，其他网站能像
-facebook 内容一样具有丰富的“图形”对象，进而促进 facebook 和其他网站之间的集成。也有利于 seo 优化。
-
-常见的 og 标签包括：
-
-```html
-<meta property="og:title" content="页面标题" />
-<meta property="og:description" content="页面描述" />
-<meta property="og:image" content="页面图片" />
-<meta property="og:url" content="页面URL" />
-<meta property="og:type" content="网页类型，如website，article" />
-<meta property="og:release_date" content="定义网页内容的发布时间" />
-```
-
-:::tip 提示
-查看更多：[The Open Graph protocol](https://ogp.me/)
-:::
-
-## 三、html 语义化
-
-html 语义化主要作用有以下几点：
-
-1. 方便屏幕阅读器解析
-2. 有利于 seo，搜索引擎更容易理解语义化页面的内容结构和主题
-3. 便于团队开发和维护，语义化更具有可读性
-
-### 标题标签
-
-相比其他标签，`h[1-6]` 标签在页面中的权重非常高，所以使用时要注意不要滥用。
-
-### 强调标签
-
-`strong`、`em` 强调标签权重虽比 `h` 标签低，但也比其他标签权重高
-
-### 超链接标签
-
-**a 标签分为“内链”和“外链”**
-
-内链：从自己网站的一个页面指向另外一个页面。通过内链让网站内部形成网状结构，让蜘蛛的广度和深度达到最大化
-
-外链：在别的网站导入自己网站的链接。通过外链提升网站权重，提高网站流量。
-
-**a 标签的两个属性**
-
-`rel=nofollow` 此属性的意思是告诉搜索引擎，不要将该链接计入权重。例如一些非本站的链接，不想传递权重
-
-`rel="external"` 此属性的意思是告诉搜索引擎，这个链接不是本站链接，其实作用相当于 `target="_blank"` 。
-
-`rel="external nofollow"` 大致可以解释为 “这个链接非本站链接，不要爬取也不要传递权重”。因此在 SEO
-的角度来说，是一种绝对隔绝处理的方法，可以有效减少蜘蛛爬行的流失。
-
-```html
-<a rel="external nofollow" href="https://www.baidu.com/">百度</a>
-```
-
-### 图片标签
-
-图像标签的 alt 属性有助于图像 seo，并在网络故障时代替图片显示
-
-### 布局标签
-
-`header`、`nav`、`article`、`section`、`aside`、`footer`
-
-## 四、sitemap 站点地图
-
-sitemap 可方便管理员通知搜索引擎他们网站上有哪些可供抓取的网页。最简单的 sitemap 形式，就是 xml
-文件，在其中列出网站中的网址以及关于每个网址的其他元数据（上次更新的时间、更改的频率以及相对于网站上其他网址的重要程度为何等），以便搜索引擎可以更加智能地抓取网站。
-
-例如在根目录下新建 `sitemap.xml` 内容格式如下：
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-   <url>
-      <loc>http://www.example.com/</loc>
-      <lastmod>2005-01-01</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.8</priority>
-   </url>
-</urlset>
-```
-
-loc：页面地址
-
-lastmod：内容最后修改时间
-
-changefreq：预计更新频率
-
-priority：页面相对于其他页面优先级，它的值范围是 0.0 到 1.0，其中 1.0 表示最高优先级
-
-:::tip 提示
-
-如果 sitemap.xml 没有放在根目录，需在 robots.txt 中指明 sitemap 位置，否则搜索引擎可能无法找到
-
-查看更多 [sitemaps.org - Protocol](https://www.sitemaps.org/protocol.html)
-
-:::
-
-## 五、robots 文件
-
-robots.txt 文件是用来告诉搜索引擎，网站上的哪些页面可以抓取，哪些页面不能抓取。
-
-如果你的网站已经有了 robots.txt 文件，那么你可以通过 *domain.com/robots.txt*这个链接进行访问。
-
-下面就是一个简单的 `robots.txt` 文件：
-
-```
-Sitemap: https://www.domain.com/sitemap.xml
-
-User-agent: *
-Disallow: /blog
-Allow: /blog/allowed-post
-```
-
-User-agent： 针对不同的用户代理分配抓取规则，你也可以使用通配符（\*）来一次性为所有的用户代理制定规则。
-
-Disallow：使用此指令来规定搜索引擎不要访问特定路径的文件和页面。
-
-Allow：使用此指令来规定搜索引擎需要访问特定路径的文件和页面——即使在一个被 disallow 指令屏蔽的路径中也可以使用。
-
-Sitemap：使用此指令来标记你网站地图所的位置。如果你对网站地图不熟悉，它通常会包含你需要被搜索引擎抓取&索引的所有页面链接。
-
-::: tip 提示
-
-小提示，你可以在 robots.txt 中使用多条 sitemap 指令。
-
-查看更多：[关于 robots.txt 和 seo：你所需要知道的一切](https://ahrefs.com/blog/zh/robots-txt/)
-
-:::
-
-## 六、各搜索引擎提交站点收录
-
-除了 robots.txt + sitemap.xml 方式增加网址被收录的可能性外，还可以在各搜索引擎站长平台手动提交网址，以缩短爬虫发现网站链接时间，加快爬虫抓取速度
-
-百度：[ziyuan.baidu.com/](https://link.zhihu.com/?target=https%3A//link.juejin.cn/%3Ftarget%3Dhttps%253A%252F%252Fziyuan.baidu.com%252F)
-
-谷歌：[developers.google.com/search?hl=z…](https://link.zhihu.com/?target=https%3A//link.juejin.cn/%3Ftarget%3Dhttps%253A%252F%252Fdevelopers.google.com%252Fsearch%253Fhl%253Dzh-cn)
-
-搜狗：[zhanzhang.sogou.com/](https://link.zhihu.com/?target=https%3A//link.juejin.cn/%3Ftarget%3Dhttps%253A%252F%252Fzhanzhang.sogou.com%252F)
-
-360：[zhanzhang.so.com/](https://link.zhihu.com/?target=https%3A//link.juejin.cn/%3Ftarget%3Dhttps%253A%252F%252Fzhanzhang.so.com%252F)
-
-必应：[www.bing.com/webmasters/…](https://link.zhihu.com/?target=https%3A//link.juejin.cn/%3Ftarget%3Dhttps%253A%252F%252Fwww.bing.com%252Fwebmasters%252Fabout)
-
-## 七、ssr、ssg、isr
-
-爬虫只能抓取到网页的静态源代码，而无法执行其中的 js 脚本。当网站采用 vue 或 react 构建 spa 项目时，页面上的大部分
-dom 元素实际上是在客户端通过 js 动态生成的。这意味着爬虫能够直接抓取和分析的内容会大幅减少。
-
-参考：[什么是 csr、ssr、ssg、isr - 渲染模式详解](https://zhuanlan.zhihu.com/p/640900230)
-
-爬虫除了不会抓取 js 脚本内容，也不会抓取 iframe 中的内容，因此项目中少用 iframe
-
-## 八、网址规范化
-
-例如，一个页面可能有多个 url 地址，比如：
-
-https://example.com/article.html
-
-https://example.com/article
-
-https://www.example.com/article
-
-这些 url 指向同一个页面内容。但是，我们应该指定其中一个作为该页面的规范化 url
+筛选参数、追踪参数、末尾斜杠、HTTP/HTTPS 和 www/非 www 都可能让同一内容产生多个地址。为重复或高度相似的页面指定一个主版本：
 
 ```html
 <link rel="canonical" href="https://www.example.com/article" />
 ```
 
-一些常见原因为
+canonical 是信号，不是强制指令。实现时应保持一致：
 
-1. 为了支持多种设备类型，如 _m.example.com_, _example.com_
-2. 当你将同一篇博文同时放到多个板块中，你的博客系统会自动保存多个网址，如 _/pathA/seo_，_/pathB/seo_
-3. 你的服务器已配置为针对 www / 非 www，http / https 变体提供相同的内容，如 _wwww.example.com_，_example.com_。
+- 站内链接直接指向 canonical URL。
+- Sitemap 只列出 canonical URL。
+- canonical 页面也添加指向自身的 canonical。
+- 已废弃地址使用永久重定向，不要只依赖 canonical。
+- 不要让 HTML、Sitemap 和重定向分别声明不同主版本。
 
-## 九、网站性能
+参见 [规范化重复 URL](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls)。
 
-网站打开速度越快，识别效果越好，否则爬虫会认为该网站对用户不友好，降低爬取效率
+## robots.txt 与 robots meta 各司其职
 
-## 参见
+`robots.txt` 适合减少无价值路径和资源的抓取：
 
-[Ahrefs 博客](https://ahrefs.com/blog/zh/)
+```text
+User-agent: *
+Disallow: /internal/
 
-[seo 初学者指南](https://ahrefs.com/zh/seo)
+Sitemap: https://www.example.com/sitemap.xml
+```
 
-[The Open Graph protocol](https://ogp.me/)
+页面级索引规则使用 robots meta：
 
-[sitemaps.org - Protocol](https://www.sitemaps.org/protocol.html)
+```html
+<meta name="robots" content="noindex, follow" />
+```
 
-[关于 robots.txt 和 seo：你所需要知道的一切](https://ahrefs.com/blog/zh/robots-txt/)
+非 HTML 文件可以通过响应头设置：
 
-[什么是 csr、ssr、ssg、isr - 渲染模式详解](https://zhuanlan.zhihu.com/p/640900230)
+```http
+X-Robots-Tag: noindex
+```
+
+不要同时在 robots.txt 中禁止抓取页面，又期待爬虫读取页面内的 `noindex`；爬虫无法访问页面时，也就看不到这条规则。参见 [robots meta 与 X-Robots-Tag](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag)。
+
+## Sitemap 只提供真实、可索引的 URL
+
+Sitemap 用于帮助搜索引擎发现新增或更新的页面，不保证收录，也不能替代内部链接：
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.example.com/article</loc>
+    <lastmod>2026-08-06</lastmod>
+  </url>
+</urlset>
+```
+
+`lastmod` 只有在持续准确时才有价值。Google 会忽略 `priority` 和 `changefreq`，因此没有必要生成主观优先级或猜测更新频率。大型站点需要拆分 Sitemap 时，再使用 Sitemap index。参见 [创建和提交 Sitemap](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap)。
+
+## 链接要能被发现，也要表达关系
+
+可抓取链接应使用真实的 `<a href>`，不要只绑定点击事件。站内链接使用能描述目标内容的锚文本，并尽量指向 canonical URL。
+
+普通外链不需要统一添加 `nofollow`。只有存在特定关系时才标记：
+
+```html
+<a href="https://partner.example.com" rel="sponsored">合作伙伴</a>
+<a href="https://example.com/comment" rel="ugc">用户评论链接</a>
+<a href="https://unknown.example.com" rel="nofollow">不希望关联的页面</a>
+```
+
+`nofollow` 是关系提示，不等于目标页面绝不会被发现或索引。`external` 也不等同于 `target="_blank"`；是否打开新窗口属于浏览器交互行为，与 SEO 关系标记是两个问题。参见 [外链关系说明](https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links)。
+
+## 语义化帮助理解，不存在标签“权重表”
+
+标题标签应该形成清晰层级，但没有必要把 `h1`、`h2`、`strong` 和 `em` 理解为固定的排名权重：
+
+- 每页使用一个能概括主题的主标题。
+- 按内容关系组织 `h2`、`h3`，不要为了字号跳级。
+- 使用 `main`、`nav`、`article` 等元素表达结构。
+- 图片使用标准 `img` 或 `picture`，提供描述内容的 `alt`。
+- 装饰图片使用空 `alt`，不要堆砌关键词。
+
+语义化首先改善可访问性和页面结构，也能给搜索引擎更清楚的内容上下文。图片实践参见 [Google 图片 SEO](https://developers.google.com/search/docs/appearance/google-images)。
+
+## 结构化数据与社交分享
+
+结构化数据使用 Schema.org 词汇明确描述页面实体，并可能使页面获得富媒体搜索结果：
+
+```html
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "现代前端 SEO",
+    "datePublished": "2026-08-06"
+  }
+</script>
+```
+
+JSON-LD 必须与页面可见内容一致，并通过 Rich Results Test 验证。正确的语法不保证一定展示富媒体结果。参见 [结构化数据入门](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data)。
+
+Open Graph 主要控制社交平台的分享预览，不应与搜索排名元数据混为一谈：
+
+```html
+<meta property="og:title" content="现代前端 SEO" />
+<meta property="og:description" content="从抓取到索引的前端实践" />
+<meta property="og:image" content="https://www.example.com/seo-cover.jpg" />
+<meta property="og:url" content="https://www.example.com/seo" />
+<meta property="og:type" content="article" />
+```
+
+`og:image` 也可能成为搜索结果或 Discover 的候选预览图，但 Open Graph 的主要职责仍是分享展示。协议定义参见 [The Open Graph protocol](https://ogp.me/)。
+
+## 性能优化要看真实用户指标
+
+“页面越快排名越高”过于简单。性能首先影响用户体验，Core Web Vitals 也是页面体验信号的一部分。当前三个核心指标是：
+
+- LCP：加载性能，良好阈值为 2.5 秒以内。
+- INP：交互响应，良好阈值为 200 毫秒以内。
+- CLS：视觉稳定性，良好阈值为 0.1 以内。
+
+这些指标应结合真实用户数据观察，不能用单次 Lighthouse 分数代替。内容相关性和可索引性也不会因为性能优秀而自动获得。参见 [Core Web Vitals 与搜索结果](https://developers.google.com/search/docs/appearance/core-web-vitals)。
+
+## 上线后用工具验证
+
+SEO 不能只靠检查源码完成。上线后至少验证：
+
+1. URL Inspection 中抓取到的 HTML 是否包含正文、标题、canonical 和 robots。
+2. 正常页、重定向和错误页是否返回正确 HTTP 状态。
+3. Search Console 选择的 canonical 是否符合预期。
+4. Sitemap 是否只包含可索引的 canonical URL，`lastmod` 是否真实。
+5. Rich Results Test 是否能解析结构化数据。
+6. Core Web Vitals 报告是否出现模板级问题。
+
+手动提交 URL 只适合少量重要页面的临时检查。站点级发现仍应依靠可抓取的内部链接、准确的 Sitemap 和稳定的响应。
+
+## 参考资料
+
+- [Google Search：面向开发者的 SEO 指南](https://developers.google.com/search/docs/fundamentals/get-started-developers)
+- [Google Search：JavaScript SEO 基础](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics)
+- [Google Search：抓取与索引](https://developers.google.com/search/docs/crawling-indexing)
+- [Google Search：搜索结果外观与结构化数据](https://developers.google.com/search/docs/appearance)
+- [The Open Graph protocol](https://ogp.me/)
