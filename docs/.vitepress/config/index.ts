@@ -7,7 +7,7 @@ export default withMermaid(
     lang: 'zh-CN',
     title: '随笔',
 
-    lastUpdated: true,
+    lastUpdated: false,
     cleanUrls: true,
     metaChunk: true,
 
@@ -30,26 +30,13 @@ export default withMermaid(
         label: '页面导航',
       },
 
-      lastUpdated: {
-        text: '最后更新于',
-        formatOptions: {
-          dateStyle: 'short',
-          timeStyle: 'medium',
-        },
-      },
-
-      editLink: {
-        pattern: 'https://github.com/Asumz/blog/edit/main/docs/:path',
-        text: '在 GitHub 上编辑此页面',
-      },
-
       returnToTopLabel: '回到顶部',
       sidebarMenuLabel: '菜单',
       darkModeSwitchLabel: '主题',
       lightModeSwitchTitle: '切换到浅色模式',
       darkModeSwitchTitle: '切换到深色模式',
 
-      socialLinks: [{ icon: 'github', link: 'https://github.com/Asumz' }],
+      socialLinks: [{ icon: 'github', link: 'https://github.com/Asumz/blog' }],
 
       search: {
         provider: 'local',
